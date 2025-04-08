@@ -10,6 +10,7 @@ import AboutSection from './components/AboutSection'
 import CEOSection from './components/CEOSection'
 import TestimonialsSection from './components/TestimonialsSection'
 import BackgroundShapes from './components/BackgroundShapes'
+import SolutionsSection from './components/SolutionsSection'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -69,31 +70,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="solutions" className={styles.section}>
-        <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>Nos Solutions</h2>
-          <div className={styles.servicesGrid}>
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                className={styles.serviceCard}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className={styles.serviceIcon}>
-                  {service.icon}
-                </div>
-                <h3 className={styles.serviceTitle}>{service.title}</h3>
-                <p className={styles.serviceDescription}>{service.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      <SolutionsSection />
       <AboutSection />
       <CEOSection />
       <TestimonialsSection />

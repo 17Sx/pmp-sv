@@ -23,17 +23,17 @@ const CEOSection = () => {
   return (
     <section className={styles.ceoSection}>
       <div className={styles.container}>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className={styles.sectionTitle}
-        >
-          Notre Équipe de Direction
-        </motion.h2>
-        
         <div className={styles.ceoGrid}>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className={styles.ceoTitle}
+          >
+            Notre Équipe de Direction
+          </motion.h2>
+          
           {ceos.map((ceo, index) => (
             <motion.div
               key={index}
