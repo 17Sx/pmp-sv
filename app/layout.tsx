@@ -6,7 +6,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "PMP - Solutions Informatiques Professionnelles",
-  description: "PMP propose des solutions informatiques personnalisées, du conseil en matériel et une assistance technique complète pour votre entreprise.",
+  description: "PMP vous accompagne dans votre transformation digitale avec des solutions sur mesure et un support technique de qualité.",
+  icons: [
+    { rel: 'icon', url: '/img/logo.png', type: 'image/png' },
+    { rel: 'apple-touch-icon', url: '/img/logo.png', type: 'image/png' },
+  ],
 };
 
 export default function RootLayout({
@@ -16,6 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
+      <head>
+        <link rel="icon" href="/img/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/img/logo.png" type="image/png" />
+      </head>
       <body className={inter.className}>
         <main style={{ paddingTop: '5rem' }}>
           {children}

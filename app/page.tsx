@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import styles from './page.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,6 +10,7 @@ import CEOSection from './components/CEOSection'
 import TestimonialsSection from './components/TestimonialsSection'
 import BackgroundShapes from './components/BackgroundShapes'
 import SolutionsSection from './components/SolutionsSection'
+import ContactSection from './components/ContactSection'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -74,53 +74,9 @@ export default function Home() {
       <AboutSection />
       <CEOSection />
       <TestimonialsSection />
+      
+      <ContactSection />
 
-      {/* Contact Section */}
-      <section id="contact" className={styles.contactSection}>
-        <div className={styles.contactContainer}>
-          <h2 className={styles.sectionTitle}>Contactez-nous</h2>
-          <form className={styles.contactForm}>
-            <div className={styles.formGroup}>
-              <label htmlFor="name" className={styles.formLabel}>
-                Nom
-              </label>
-              <input
-                type="text"
-                id="name"
-                className={styles.formInput}
-                placeholder="Votre nom"
-                required
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="email" className={styles.formLabel}>
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className={styles.formInput}
-                placeholder="Votre email"
-                required
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="message" className={styles.formLabel}>
-                Message
-              </label>
-              <textarea
-                id="message"
-                className={`${styles.formInput} ${styles.formTextarea}`}
-                placeholder="Votre message"
-                required
-              />
-            </div>
-            <button type="submit" className={styles.submitButton}>
-              Envoyer
-            </button>
-          </form>
-        </div>
-      </section>
 
       <footer className={styles.footer}>
         <div className={styles.footerContainer}>

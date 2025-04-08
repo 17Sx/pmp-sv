@@ -8,17 +8,38 @@ const testimonials = [
   {
     name: "Pierre Martin",
     role: "Directeur de Projet",
-    text: "PMP a transformé notre approche de la gestion de projet. Leur expertise et leur professionnalisme sont exceptionnels."
+    company: "Tech Solutions SA",
+    text: "PMP a transformé notre approche de la gestion de projet. Leur expertise et leur professionnalisme sont exceptionnels. Leur support technique est toujours réactif et efficace."
   },
   {
     name: "Sophie Dubois",
     role: "Chef de Projet",
-    text: "Une collaboration remarquable avec l'équipe PMP. Leurs solutions sont innovantes et efficaces."
+    company: "Innovation Group",
+    text: "Une collaboration remarquable avec l'équipe PMP. Leurs solutions sont innovantes et efficaces. Ils ont su comprendre nos besoins spécifiques et y répondre parfaitement."
   },
   {
     name: "Thomas Leroy",
     role: "Directeur Technique",
-    text: "PMP a su relever tous les défis de notre projet complexe. Un partenaire de confiance."
+    company: "Digital Systems",
+    text: "PMP a su relever tous les défis de notre projet complexe. Un partenaire de confiance qui nous accompagne depuis plusieurs années dans notre transformation digitale."
+  },
+  {
+    name: "Marie Laurent",
+    role: "Directrice des Opérations",
+    company: "Global Services",
+    text: "La formation dispensée par PMP a permis à nos équipes de monter rapidement en compétence. Leur approche pédagogique est adaptée à tous les niveaux."
+  },
+  {
+    name: "Jean Dupont",
+    role: "Responsable IT",
+    company: "Industries Modernes",
+    text: "Les conseils de PMP pour le choix de notre infrastructure ont été précieux. Leur expertise nous a permis de faire les bons choix technologiques."
+  },
+  {
+    name: "Claire Bernard",
+    role: "Directrice Financière",
+    company: "Finance & Co",
+    text: "L'hébergement sécurisé de nos données par PMP nous donne une totale confiance. Leur service est fiable et leur support toujours disponible."
   }
 ];
 
@@ -48,7 +69,7 @@ const TestimonialsSection = () => {
               <p className={styles.testimonialText}>{testimonial.text}</p>
               <div className={styles.testimonialAuthor}>
                 <Image
-                  src={`/svg/testimonial-${index + 1}.svg`}
+                  src={`/svg/testimonial-${(index % 3) + 1}.svg`}
                   alt={testimonial.name}
                   width={80}
                   height={80}
@@ -57,6 +78,7 @@ const TestimonialsSection = () => {
                 <div className={styles.authorInfo}>
                   <span className={styles.authorName}>{testimonial.name}</span>
                   <span className={styles.authorRole}>{testimonial.role}</span>
+                  <span className={styles.authorCompany}>{testimonial.company}</span>
                 </div>
               </div>
             </motion.div>
