@@ -15,7 +15,7 @@ const AboutSection = () => {
           transition={{ duration: 0.5 }}
           className={styles.sectionTitle}
         >
-          Qu'est-ce que PMP ?
+          À propos de nous
         </motion.h2>
         <div className={styles.aboutSection}>
           <motion.div
@@ -25,11 +25,12 @@ const AboutSection = () => {
             viewport={{ once: true }}
           >
             <Image
-              src="/svg/about.svg"
-              alt="À propos"
-              width={400}
-              height={300}
+              src="/svg/about-illustration.svg"
+              alt="À propos de PMP"
+              width={500}
+              height={400}
               className={styles.aboutImage}
+              priority
             />
           </motion.div>
           <motion.div
