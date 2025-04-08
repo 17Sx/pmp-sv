@@ -4,74 +4,98 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 1rem 0;
   transition: all 0.3s ease;
 }
 
-.headerScrolled {
-  padding: 0.75rem 0;
-  background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+.headerDark {
+  background: rgba(30, 58, 138, 0.5);
+  backdrop-filter: blur(10px);
 }
 
-.headerContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+.headerDark .navLink {
+  color: white;
+}
+
+.headerDark .navLink:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.headerDark .navLink::after {
+  background: white;
+}
+
+.logoContainer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  height: 35px;
+  height: 40px;
   width: auto;
   transition: transform 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .nav {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
+  align-items: center;
 }
 
 .navLink {
-  color: #333;
+  color: #1E3A8A;
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem;
-  letter-spacing: 0.3px;
+  font-size: 1rem;
   position: relative;
-  padding: 0.5rem 0;
   transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #3B82F6;
 }
 
 .navLink::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
-  width: 100%;
-  height: 1px;
-  background: #333;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
-
-.navLink:hover {
-  color: #333;
+  width: 0;
+  height: 2px;
+  background: #1E3A8A;
+  transition: width 0.3s ease;
 }
 
 .navLink:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+  width: 100%;
+}
+
+.ctaButton {
+  background: #1E3A8A;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 1px solid #1E3A8A;
+  opacity: 0.9;
+}
+
+.ctaButton:hover {
+  background: transparent;
+  color: #1E3A8A;
+  transform: translateY(-1px);
+  opacity: 1;
 }
 
 .hero {
@@ -80,20 +104,8 @@
   display: flex;
   align-items: center;
   padding: 0;
-  background: #F8FAFC;
+  background: #F0F2F4;
   overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(30, 58, 138, 0.03) 0%, rgba(30, 58, 138, 0.1) 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  z-index: 0;
 }
 
 .heroContent {
@@ -111,43 +123,65 @@
 
 .heroLeft {
   position: relative;
+  max-width: 500px;
+}
+
+.heroRight {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroVideo {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  
+  transition: transform 0.3s ease;
+}
+
+.heroVideo:hover {
+  transform: perspective(1000px) rotateY(0deg);
 }
 
 .heroLogo {
-  width: 180px;
+  width: 150px;
   height: auto;
   margin-bottom: 2rem;
   opacity: 0.9;
-  position: relative;
-  z-index: 2;
 }
 
 .heroTitle {
-  font-size: 3.75rem;
+  font-size: 3rem;
   font-weight: 800;
   color: #1E3A8A;
   margin-bottom: 1.5rem;
   line-height: 1.1;
-  position: relative;
 }
 
-.heroTitle::after {
+.highlight {
+  color: #1E3A8A;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: 0;
   left: 0;
-  width: 60px;
-  height: 4px;
-  background: #1E3A8A;
-  border-radius: 2px;
+  width: 100%;
+  height: 8px;
+  background: rgba(30, 58, 138, 0.2);
+  z-index: -1;
 }
 
 .heroText {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: #475569;
   margin-bottom: 2.5rem;
   line-height: 1.6;
-  max-width: 500px;
 }
 
 .heroButtons {
@@ -167,24 +201,11 @@
   font-size: 1rem;
   border: 2px solid #1E3A8A;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
 
-.btnPrimary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-}
-
-.btnPrimary:hover::before {
-  transform: translateX(0);
+.btnPrimary:hover {
+  background: transparent;
+  color: #1E3A8A;
 }
 
 .btnSecondary {
@@ -202,14 +223,8 @@
 }
 
 .btnSecondary:hover {
-  background: rgba(30, 58, 138, 0.05);
-}
-
-.heroRight {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #1E3A8A;
+  color: white;
 }
 
 .heroImage {
@@ -640,4 +655,44 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.serviceIcon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.5rem;
+  color: #3B82F6;
+  stroke-width: 1.5;
+}
+
+.formIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  color: #6B7280;
+  stroke-width: 1.5;
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  color: white;
+  stroke-width: 1.5;
+}
+
+.footerIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+  color: #6B7280;
+  stroke-width: 1.5;
+}
+
+.contactIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+  color: #6B7280;
+  stroke-width: 1.5;
 } 
