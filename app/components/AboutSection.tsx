@@ -6,48 +6,38 @@ import styles from '../page.module.css';
 
 const AboutSection = () => {
   return (
-    <section id="about" className={styles.section}>
-      <div className={styles.sectionContainer}>
-        <motion.h2
+    <section id="about" className={styles.aboutSection}>
+      <div className={styles.aboutContainer}>
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={styles.sectionTitle}
+          className={styles.aboutImage}
         >
-          À propos de nous
-        </motion.h2>
-        <div className={styles.aboutSection}>
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Image
-              src="/svg/about-illustration.svg"
-              alt="À propos de PMP"
-              width={500}
-              height={400}
-              className={styles.aboutImage}
-              priority
-            />
-          </motion.div>
-          <motion.div
-            className={styles.aboutContent}
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <p className={styles.aboutText}>
-              PMP est une entreprise spécialisée dans les solutions informatiques professionnelles. Nous proposons une gamme complète de services pour répondre à tous vos besoins informatiques.
-            </p>
-            <p className={styles.aboutText}>
-              Notre expertise couvre l'étude de vos besoins, le développement d'applications personnalisées, le conseil en matériel, la formation des utilisateurs, et l'assistance technique.
-            </p>
-          </motion.div>
-        </div>
+          <Image
+            src="/img/about.jpg"
+            alt="Analyse de données et solutions informatiques"
+            width={500}
+            height={400}
+            className={styles.aboutImage}
+            priority
+          />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className={styles.aboutContent}
+        >
+          <h2 className={styles.aboutTitle}>À propos de PMP</h2>
+          <p className={styles.aboutText}>
+            PMP est une entreprise spécialisée dans les solutions informatiques professionnelles.
+            Notre expertise couvre un large éventail de services, de la maintenance informatique
+            à la cybersécurité en passant par le développement d'applications sur mesure.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
