@@ -21,7 +21,7 @@ const CEOSection = () => {
   ];
 
   return (
-    <section className={styles.ceoSection}>
+    <section id="ceo" className={styles.ceoSection}>
       <div className={styles.container}>
         <div className={styles.ceoGrid}>
           <motion.h2

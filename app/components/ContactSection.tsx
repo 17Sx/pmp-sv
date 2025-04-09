@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon, ClockIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import styles from '../page.module.css';
 
 const ContactSection = () => {
@@ -12,6 +12,11 @@ const ContactSection = () => {
     subject: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -21,34 +26,52 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setStatus({ type: null, message: '' });
+
     try {
-      // Ici, vous pouvez ajouter la logique pour envoyer les données à votre backend
-      console.log('Données du formulaire:', formData);
-      alert('Message envoyé avec succès !');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
       });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({
+          type: 'success',
+          message: 'Message envoyé avec succès'
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus({
+          type: 'error',
+          message: data.error || 'Une erreur est survenue'
+        });
+      }
     } catch (error) {
-      console.error('Erreur lors de l\'envoi du message:', error);
-      alert('Une erreur est survenue lors de l\'envoi du message.');
+      setStatus({
+        type: 'error',
+        message: 'Une erreur est survenue lors de l\'envoi du message'
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <section id="contact" className={styles.contactSection}>
       <div className={styles.contactContainer}>
-        <motion.h2
+      <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={styles.contactTitle}
-          >
+          className={styles.sectionTitle}
+        >
           Contactez-nous
         </motion.h2>
         
@@ -65,28 +88,24 @@ const ContactSection = () => {
               <div className={styles.contactItem}>
                 <PhoneIcon className={styles.contactIcon} />
                 <div>
-                  <span className={styles.contactLabel}>Téléphone</span>
-                  <a href="tel:+33145332892" className={styles.contactValue}>01 45 33 28 92</a>
+                  <a href="tel:+33182888888" className={styles.contactValue}>01 82 88 88 88</a>
                 </div>
               </div>
               <div className={styles.contactItem}>
                 <EnvelopeIcon className={styles.contactIcon} />
                 <div>
-                  <span className={styles.contactLabel}>Email</span>
                   <a href="mailto:contact@pmp.fr" className={styles.contactValue}>contact@pmp.fr</a>
                 </div>
               </div>
               <div className={styles.contactItem}>
                 <MapPinIcon className={styles.contactIcon} />
                 <div>
-                  <span className={styles.contactLabel}>Adresse</span>
-                  <span className={styles.contactValue}>5 Rue de Chazelles<br />75017 Paris</span>
+                  <span className={styles.contactValue}>2 rue de la Paix<br />75002 Paris</span>
                 </div>
               </div>
               <div className={styles.contactItem}>
                 <ClockIcon className={styles.contactIcon} />
                 <div>
-                  <span className={styles.contactLabel}>Horaires</span>
                   <span className={styles.contactValue}>Lundi - Vendredi<br />9h00 - 18h00</span>
                 </div>
               </div>
@@ -112,6 +131,7 @@ const ContactSection = () => {
                   className={styles.formInput}
                   placeholder="Votre nom"
                   required
+                  disabled={isLoading}
                 />
               </div>
               <div className={styles.formGroup}>
@@ -125,6 +145,7 @@ const ContactSection = () => {
                   className={styles.formInput}
                   placeholder="votre@email.com"
                   required
+                  disabled={isLoading}
                 />
               </div>
               <div className={styles.formGroup}>
@@ -138,6 +159,7 @@ const ContactSection = () => {
                   className={styles.formInput}
                   placeholder="Objet de votre message"
                   required
+                  disabled={isLoading}
                 />
               </div>
               <div className={styles.formGroup}>
@@ -151,10 +173,22 @@ const ContactSection = () => {
                   placeholder="Votre message"
                   rows={5}
                   required
+                  disabled={isLoading}
                 ></textarea>
               </div>
-              <button type="submit" className={styles.submitButton}>
-                Envoyer le message
+
+              {status.type && (
+                <div className={status.type === 'success' ? styles.formSuccess : styles.formError}>
+                  {status.message}
+                </div>
+              )}
+
+              <button 
+                type="submit" 
+                className={styles.submitButton}
+                disabled={isLoading}
+              >
+                {isLoading ? 'Envoi en cours...' : 'Envoyer le message'}
               </button>
             </form>
           </motion.div>

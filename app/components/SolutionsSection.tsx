@@ -37,7 +37,7 @@ const solutions = [
 
 export default function SolutionsSection() {
   return (
-    <section className={styles.solutionsSection}>
+    <section id='solutions' className={styles.solutionsSection}>
       <div className={styles.container}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

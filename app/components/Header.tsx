@@ -49,16 +49,19 @@ export default function Header() {
       </div>
       
       <nav className={styles.nav}>
-        <Link href="/solutions" className={styles.navLink}>
+        <Link href="#solutions" className={styles.navLink}>
           Nos solutions
         </Link>
-        <Link href="/clients" className={styles.navLink}>
-          Nos clients
+        <Link href="#about" className={styles.navLink}>
+          A propos
         </Link>
-        <Link href="/contact" className={styles.navLink}>
+        <Link href="#ceo" className={styles.navLink}>
+          Notre equipe
+        </Link>
+        <Link href="#contact" className={styles.navLink}>
           Contact
         </Link>
-        <Link href="/telechargement" className={styles.navLink}>
+        <Link href="#telechargement" className={styles.navLink}>
           Téléchargement
         </Link>
       </nav>

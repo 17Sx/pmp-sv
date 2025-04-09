@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import styles from './page.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -48,10 +47,10 @@ export default function Home() {
               PMP vous accompagne dans votre transformation digitale avec des solutions sur mesure et un support technique de qualité.
             </p>
             <div className={styles.heroButtons}>
-              <Link href="/contact" className={styles.btnPrimary}>
+              <Link href="#contact" className={styles.btnPrimary}>
                 Nous contacter
               </Link>
-              <Link href="/solutions" className={styles.btnSecondary}>
+              <Link href="#solutions" className={styles.btnSecondary}>
                 Nos solutions
               </Link>
             </div>
@@ -77,7 +76,7 @@ export default function Home() {
       <TestimonialsSection />
       
       <ContactSection />
-      
+
       <footer className={styles.footer}>
         <div className={styles.footerContainer}>
           <div>
