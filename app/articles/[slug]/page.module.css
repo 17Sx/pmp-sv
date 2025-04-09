@@ -1,0 +1,135 @@
+.articleContainer {
+  min-height: calc(100vh - 200px); /* Hauteur minimale pour le contenu */
+  padding: 2rem 0;
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+}
+
+.articleContent {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.articleHeader {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.articleTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.articleMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.articleDate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.articleBody {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2c3e50;
+}
+
+.articleBody p {
+  margin-bottom: 1.5rem;
+}
+
+.articleBody h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 2rem 0 1rem;
+}
+
+.articleBody h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 1.5rem 0 1rem;
+}
+
+.articleBody ul,
+.articleBody ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.articleBody li {
+  margin-bottom: 0.5rem;
+}
+
+.articleBody a {
+  color: #2563eb;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.articleBody a:hover {
+  border-color: #2563eb;
+}
+
+.articleBody blockquote {
+  border-left: 4px solid #2563eb;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: #4a5568;
+  font-style: italic;
+}
+
+.articleBody code {
+  background: #f1f5f9;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.articleBody pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.articleBody img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .articleContent {
+    padding: 1.5rem;
+  }
+
+  .articleTitle {
+    font-size: 2rem;
+  }
+
+  .articleBody {
+    font-size: 1rem;
+  }
+} 

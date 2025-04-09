@@ -72,11 +72,10 @@ export default function Home() {
       </section>
 
       <SolutionsSection />
-      <DownloadSection />
       <AboutSection />
       <CEOSection />
       <TestimonialsSection />
-      
+      <DownloadSection />
       <ContactSection />
 
       <footer className={styles.footer}>

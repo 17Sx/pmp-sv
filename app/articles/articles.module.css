@@ -1,0 +1,123 @@
+.articlesContainer {
+  min-height: calc(100vh - 200px);
+  padding: 4rem 0;
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+}
+
+.pageTitle {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.articlesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.articleCard {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.articleCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.articleCard h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.articleDate {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.articleExcerpt {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.readMore {
+  display: inline-flex;
+  align-items: center;
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  margin-top: auto;
+}
+
+.readMore:hover {
+  color: #1d4ed8;
+}
+
+.readMore::after {
+  content: '→';
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.readMore:hover::after {
+  transform: translateX(4px);
+}
+
+.loading {
+  text-align: center;
+  color: #6c757d;
+  font-size: 1.1rem;
+  grid-column: 1 / -1;
+}
+
+.noArticles {
+  text-align: center;
+  color: #6c757d;
+  font-size: 1.1rem;
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  .articlesContainer {
+    padding: 2rem 0;
+  }
+
+  .pageTitle {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .articlesGrid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .articleCard {
+    padding: 1.5rem;
+  }
+} 

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import styles from '../page.module.css'
 
 export default function Header() {
@@ -37,18 +36,18 @@ export default function Header() {
     <header className={`${styles.header} ${isDark ? styles.headerDark : ''}`}>
       <div className={styles.logoContainer}>
         <Link href="/">
-          <Image 
+          <img 
             src="/img/logo.png" 
-            alt="Logo" 
-            width={120} 
-            height={40} 
-            priority
+            alt="Logo PMP" 
             className={styles.logo}
           />
         </Link>
       </div>
       
       <nav className={styles.nav}>
+        <Link href="/articles" className={styles.navLink}>
+          Articles
+        </Link>
         <Link href="#solutions" className={styles.navLink}>
           Nos solutions
         </Link>
