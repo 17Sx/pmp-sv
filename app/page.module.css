@@ -13,9 +13,17 @@
   transition: all 0.3s ease;
 }
 
+.main{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .headerDark {
   background: rgba(30, 58, 138, 0.5);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .headerDark .navLink {

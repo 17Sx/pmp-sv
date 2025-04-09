@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import CustomCursor2 from './components/CustomCursor2';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/img/logo.png" type="image/png" />
       </head>
       <body className={inter.className}>
+        <CustomCursor2 />
         <main style={{ paddingTop: '5rem' }}>
           {children}
         </main>
