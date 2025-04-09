@@ -13,6 +13,7 @@ import SolutionsSection from './components/SolutionsSection'
 import ContactSection from './components/ContactSection'
 import DownloadSection from './components/DownloadSection'
 import ClientCarousel from './components/ClientCarousel'
+import ArticlesSection from './components/ArticlesSection'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -77,6 +78,7 @@ export default function Home() {
       <CEOSection />
       <ClientCarousel />
       <TestimonialsSection />
+      <ArticlesSection />
       <DownloadSection />
       <ContactSection />
 
@@ -106,6 +108,9 @@ export default function Home() {
               <a href="#contact" className={styles.footerLink}>
                 Contact
               </a>
+              <Link href="/blog" className={styles.footerLink}>
+                Blog
+              </Link>
             </div>
           </div>
           <div>
