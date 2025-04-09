@@ -58,11 +58,11 @@ export default function Header() {
         <Link href="#ceo" className={styles.navLink}>
           Notre equipe
         </Link>
-        <Link href="#contact" className={styles.navLink}>
-          Contact
-        </Link>
         <Link href="#telechargement" className={styles.navLink}>
           Téléchargement
+        </Link>
+        <Link href="#contact" className={styles.navLink}>
+          Contact
         </Link>
       </nav>
     </header>

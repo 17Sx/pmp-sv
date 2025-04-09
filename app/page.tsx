@@ -11,6 +11,7 @@ import TestimonialsSection from './components/TestimonialsSection'
 import BackgroundShapes from './components/BackgroundShapes'
 import SolutionsSection from './components/SolutionsSection'
 import ContactSection from './components/ContactSection'
+import DownloadSection from './components/DownloadSection'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -71,6 +72,7 @@ export default function Home() {
       </section>
 
       <SolutionsSection />
+      <DownloadSection />
       <AboutSection />
       <CEOSection />
       <TestimonialsSection />
