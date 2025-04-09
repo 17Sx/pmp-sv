@@ -4,6 +4,11 @@ interface QueryResult {
   [key: string]: string | number | boolean | null | Date;
 }
 
+interface QueryParams {
+  query: string;
+  values?: (string | number)[];
+}
+
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT || '3310'),
@@ -29,12 +34,12 @@ export async function testConnection() {
 }
 
 // Fonction pour exécuter des requêtes
-export async function query(sql: string, params: (string | number)[] = []): Promise<QueryResult[]> {
+export async function query({ query: sql, values = [] }: QueryParams): Promise<QueryResult[]> {
   try {
     console.log('📝 Exécution de la requête:', sql);
-    console.log('📌 Paramètres:', params);
+    console.log('📌 Paramètres:', values);
     
-    const [results] = await pool.execute(sql, params);
+    const [results] = await pool.execute(sql, values);
     console.log('✅ Requête exécutée avec succès');
     return results as QueryResult[];
   } catch (error) {
