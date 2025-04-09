@@ -16,7 +16,7 @@ const clients: Client[] = [
   { id: 3, name: 'ULabs', logo: '/img/logo/ulabs.avif' },
   { id: 4, name: 'IPRAD', logo: '/img/logo/iprad.jpg' },
   { id: 5, name: 'Procter & Gamble', logo: '/img/logo/procteretgamble.png' },
-  { id: 6, name: 'H&h', logo: '/img/logo/heth.jpg' },
+  { id: 6, name: 'H&h', logo: '/img/logo/heth.jpeg' },
   { id: 7, name: 'Forte Pharma', logo: '/img/logo/fortepharma.png' },
   { id: 8, name: 'Bayer', logo: '/img/logo/bayer.png' },
   { id: 9, name: 'Santarome', logo: '/img/logo/santarome.webp' },

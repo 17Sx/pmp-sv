@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-three/drei": "^9.99.0",
     "@react-three/fiber": "^8.15.16",
+    "@tinymce/tinymce-react": "^6.1.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/nodemailer": "^6.4.17",

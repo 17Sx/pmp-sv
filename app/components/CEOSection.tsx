@@ -9,7 +9,7 @@ const CEOSection = () => {
     {
       name: "M. Vincent FERLANDE",
       role: "Président",
-      image: "/images/jean-philippe-palm.jpg",
+      image: "/img/pierre.jpeg",
       description: "Fondateur et Président de PMP, expert en gestion de projet avec plus de 20 ans d'expérience."
     },
     {

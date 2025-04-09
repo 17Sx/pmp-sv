@@ -3,32 +3,25 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import { Editor } from '@tinymce/tinymce-react';
 import styles from './articles.module.css';
 
-interface Article {
-  id: number;
-  title: string;
-  content: string;
-  slug: string;
-  status: string;
-  created_at: string;
-  updated_at: string;
+interface BlobInfo {
+  blob: () => Blob;
+  filename: () => string;
 }
 
-export default function ArticlesAdmin() {
+export default function NewArticle() {
   const router = useRouter();
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
     title: '',
     content: '',
     slug: '',
     status: 'draft'
   });
+  const [images, setImages] = useState<File[]>([]);
+  const [imagePositions, setImagePositions] = useState<{ [key: string]: number }>({});
 
-  // Vérifier l'authentification
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -44,93 +37,44 @@ export default function ArticlesAdmin() {
     checkAuth();
   }, [router]);
 
-  // Charger les articles
-  useEffect(() => {
-    fetchArticles();
-  }, []);
-
-  const fetchArticles = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch('/api/articles');
-      const data = await response.json();
-      setArticles(data.articles || []);
-    } catch (error) {
-      console.error('Erreur lors du chargement des articles:', error);
-      setArticles([]);
-    } finally {
-      setIsLoading(false);
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setImages(Array.from(e.target.files));
     }
   };
 
-  // Créer un article
+  const handleImagePositionChange = (fileName: string, position: number) => {
+    setImagePositions(prev => ({
+      ...prev,
+      [fileName]: position
+    }));
+  };
+
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('title', formData.title);
+      formDataToSend.append('content', formData.content);
+      formDataToSend.append('slug', formData.slug);
+      formDataToSend.append('status', formData.status);
+      
+      images.forEach((image, index) => {
+        formDataToSend.append('images', image);
+        formDataToSend.append(`image_positions[${image.name}]`, imagePositions[image.name]?.toString() || '0');
+      });
+
       const response = await fetch('/api/articles', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
       });
 
       if (response.ok) {
-        setFormData({ title: '', content: '', slug : '', status: 'draft' });
-        fetchArticles();
+        router.push('/admin/articles/existing');
       }
     } catch (error) {
       console.error('Erreur lors de la création:', error);
     }
-  };
-
-  // Mettre à jour un article
-  const handleUpdate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!selectedArticle) return;
-
-    try {
-      const response = await fetch(`/api/articles/${selectedArticle.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setIsEditing(false);
-        setSelectedArticle(null);
-        setFormData({ title: '', content: '', slug: '', status: 'draft' });
-        fetchArticles();
-      }
-    } catch (error) {
-      console.error('Erreur lors de la mise à jour:', error);
-    }
-  };
-
-  // Supprimer un article
-  const handleDelete = async (id: number) => {
-    if (!confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) return;
-
-    try {
-      const response = await fetch(`/api/articles/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        fetchArticles();
-      }
-    } catch (error) {
-      console.error('Erreur lors de la suppression:', error);
-    }
-  };
-
-  const handleEdit = (article: Article) => {
-    setSelectedArticle(article);
-    setFormData({
-      title: article.title,
-      content: article.content,
-      slug: article.slug,
-      status: article.status
-    });
-    setIsEditing(true);
   };
 
   return (
@@ -140,125 +84,134 @@ export default function ArticlesAdmin() {
         animate={{ opacity: 1, y: 0 }}
         className={styles.adminTitle}
       >
-        Gestion des Articles
+        Nouvel article
       </motion.h1>
 
-      <div className={styles.adminContent}>
-        <motion.form
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className={styles.articleForm}
-          onSubmit={isEditing ? handleUpdate : handleCreate}
-        >
-          <h2>{isEditing ? 'Modifier l\'article' : 'Nouvel article'}</h2>
-          
-          <div className={styles.formGroup}>
-            <label htmlFor="title">Titre</label>
-            <input
-              type="text"
-              id="title"
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              required
-            />
-          </div>
+      <motion.form
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className={styles.articleForm}
+        onSubmit={handleCreate}
+      >
+        <div className={styles.formGroup}>
+          <label htmlFor="title">Titre</label>
+          <input
+            type="text"
+            id="title"
+            value={formData.title}
+            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            required
+          />
+        </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="slug">Slug</label>
-            <input
-              type="text"
-              id="slug"
-              value={formData.slug}
-              onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-              required
-            />
-          </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="slug">Slug</label>
+          <input
+            type="text"
+            id="slug"
+            value={formData.slug}
+            onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+            required
+          />
+        </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="content">Contenu</label>
-            <textarea
-              id="content"
-              value={formData.content}
-              onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              required
-              rows={10}
-            />
-          </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="content">Contenu</label>
+          <Editor
+            apiKey={process.env.NEXT_PUBLIC_TINYMCE_API_KEY}
+            value={formData.content}
+            onEditorChange={(content: string) => setFormData({ ...formData, content })}
+            init={{
+              height: 600,
+              width: '100%',
+              menubar: true,
+              plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+              ],
+              toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help | image',
+              content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px; line-height:1.6; }',
+              images_upload_url: '/api/upload',
+              automatic_uploads: true,
+              file_picker_types: 'image',
+              images_upload_handler: async (blobInfo: BlobInfo, progress: (percent: number) => void) => {
+                const formData = new FormData();
+                formData.append('file', blobInfo.blob(), blobInfo.filename());
+                
+                const response = await fetch('/api/upload', {
+                  method: 'POST',
+                  body: formData
+                });
+                
+                const json = await response.json();
+                return json.location;
+              }
+            }}
+          />
+        </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="status">Statut</label>
-            <select
-              id="status"
-              value={formData.status}
-              onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-            >
-              <option value="draft">Brouillon</option>
-              <option value="published">Publié</option>
-            </select>
-          </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="status">Statut</label>
+          <select
+            id="status"
+            value={formData.status}
+            onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+          >
+            <option value="draft">Brouillon</option>
+            <option value="published">Publié</option>
+          </select>
+        </div>
 
-          <div className={styles.formActions}>
-            <button type="submit" className={styles.submitButton}>
-              {isEditing ? 'Mettre à jour' : 'Créer'}
-            </button>
-            {isEditing && (
-              <button
-                type="button"
-                onClick={() => {
-                  setIsEditing(false);
-                  setSelectedArticle(null);
-                  setFormData({ title: '', content: '', slug: '', status: 'draft' });
-                }}
-                className={styles.cancelButton}
-              >
-                Annuler
-              </button>
-            )}
-          </div>
-        </motion.form>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className={styles.articlesList}
-        >
-          <h2>Articles existants</h2>
-          {isLoading ? (
-            <p>Chargement des articles...</p>
-          ) : articles.length > 0 ? (
-            articles.map((article) => (
-              <motion.div
-                key={article.id}
-                className={styles.articleItem}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-              >
-                <div className={styles.articleInfo}>
-                  <h3>{article.title}</h3>
-                  <p>Statut: {article.status}</p>
-                  <p>Dernière modification: {new Date(article.updated_at).toLocaleDateString()}</p>
+        <div className={styles.formGroup}>
+          <label htmlFor="images">Images</label>
+          <input
+            type="file"
+            id="images"
+            multiple
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+          {images.length > 0 && (
+            <div className={styles.imagePreviews}>
+              {images.map((image, index) => (
+                <div key={index} className={styles.imagePreview}>
+                  <img
+                    src={URL.createObjectURL(image)}
+                    alt={`Preview ${index + 1}`}
+                    className={styles.previewImage}
+                  />
+                  <div className={styles.imagePosition}>
+                    <label>Position dans l'article:</label>
+                    <input
+                      type="number"
+                      value={imagePositions[image.name] || 0}
+                      onChange={(e) => handleImagePositionChange(image.name, parseInt(e.target.value))}
+                      min="0"
+                    />
+                  </div>
                 </div>
-                <div className={styles.articleActions}>
-                  <button
-                    onClick={() => handleEdit(article)}
-                    className={styles.editButton}
-                  >
-                    Modifier
-                  </button>
-                  <button
-                    onClick={() => handleDelete(article.id)}
-                    className={styles.deleteButton}
-                  >
-                    Supprimer
-                  </button>
-                </div>
-              </motion.div>
-            ))
-          ) : (
-            <p>Aucun article trouvé.</p>
+              ))}
+            </div>
           )}
-        </motion.div>
-      </div>
+        </div>
+
+        <div className={styles.formActions}>
+          <button type="submit" className={styles.submitButton}>
+            Créer l'article
+          </button>
+          <button
+            type="button"
+            onClick={() => router.push('/admin/articles/existing')}
+            className={styles.cancelButton}
+          >
+            Annuler
+          </button>
+        </div>
+      </motion.form>
     </div>
   );
 } 
