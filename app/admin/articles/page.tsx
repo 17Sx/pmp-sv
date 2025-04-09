@@ -74,7 +74,7 @@ export default function ArticlesAdmin() {
       });
 
       if (response.ok) {
-        setFormData({ title: '', content: '', slug: '', status: 'draft' });
+        setFormData({ title: '', content: '', slug : '', status: 'draft' });
         fetchArticles();
       }
     } catch (error) {

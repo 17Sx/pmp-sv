@@ -12,6 +12,7 @@ import BackgroundShapes from './components/BackgroundShapes'
 import SolutionsSection from './components/SolutionsSection'
 import ContactSection from './components/ContactSection'
 import DownloadSection from './components/DownloadSection'
+import ClientCarousel from './components/ClientCarousel'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -41,8 +42,8 @@ export default function Home() {
               className={styles.heroLogo}
             />
             <h1 className={styles.heroTitle}>
-              Solutions informatiques<br />
-              <span className={styles.highlight}>professionnelles</span>
+              Solutions Informatiques<br />
+              <span className={styles.highlight}>Professionnelles</span>
             </h1>
             <p className={styles.heroText}>
               PMP vous accompagne dans votre transformation digitale avec des solutions sur mesure et un support technique de qualité.
@@ -74,6 +75,7 @@ export default function Home() {
       <SolutionsSection />
       <AboutSection />
       <CEOSection />
+      <ClientCarousel />
       <TestimonialsSection />
       <DownloadSection />
       <ContactSection />

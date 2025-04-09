@@ -23,6 +23,7 @@ export async function GET() {
   }
 }
 
+
 // POST - Créer un nouvel article
 export async function POST(request: Request) {
   try {

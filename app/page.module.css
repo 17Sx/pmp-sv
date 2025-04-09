@@ -1107,3 +1107,102 @@
   }
 }
 
+.clientsSection {
+  padding: 4rem 0;
+  background: linear-gradient(to right, #f8fafc, #f1f5f9);
+  overflow: hidden;
+}
+
+.clientsTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1E3A8A;
+  margin-bottom: 3rem;
+}
+
+.clientsCarousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.clientsTrack {
+  display: flex;
+  gap: 2rem;
+  animation: scroll 30s linear infinite;
+  width: max-content;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 1rem));
+  }
+}
+
+.clientCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-width: 200px;
+  height: 150px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clientCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.clientLogo {
+  max-height: 60px;
+  max-width: 150px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.clientCard:hover .clientLogo {
+  filter: grayscale(0%);
+}
+
+.clientName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1e293b;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .clientsSection {
+    padding: 3rem 0;
+  }
+
+  .clientsTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .clientCard {
+    min-width: 160px;
+    padding: 1.5rem;
+    height: 120px;
+  }
+
+  .clientLogo {
+    max-height: 50px;
+    max-width: 120px;
+  }
+}
+

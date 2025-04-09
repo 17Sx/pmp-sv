@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 import styles from './articles.module.css';
 import Footer from '../components/Footer';
 
-import { CalendarIcon } from '@heroicons/react/24/outline';
 import Header from '../components/Header';
-import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+
 
 
 interface Article {
@@ -46,6 +47,15 @@ export default function ArticlesPage() {
     <>
       <Header />
       <main className={styles.articlesContainer}>
+
+        <div className={styles.backbtn}>
+          <Link href="/">
+            <ArrowLeftIcon className="w-5 h-5" />
+            Retour
+          </Link>
+        </div>
+
+
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,7 +85,6 @@ export default function ArticlesPage() {
               >
                 <h2>{article.title}</h2>
                 <div className={styles.articleDate}>
-                  <CalendarIcon className="w-5 h-5" />
                   <span>
                     {new Date(article.created_at).toLocaleDateString('fr-FR', {
                       year: 'numeric',

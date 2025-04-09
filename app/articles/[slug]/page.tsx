@@ -1,9 +1,11 @@
 import { query } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import styles from './page.module.css';
-import { CalendarIcon } from '@heroicons/react/24/outline';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Link from 'next/link';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+
 
 interface Article {
   id: number;
@@ -14,6 +16,8 @@ interface Article {
   created_at: string;
   updated_at: string;
 }
+
+
 
 export default async function ArticlePage({ params }: { params: { slug: string } }) {
   try {
@@ -37,12 +41,19 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       <>
         <Header />
         <main className={styles.articleContainer}>
+
+        <div className={styles.backbtn}>
+          <Link href="/articles">
+            <ArrowLeftIcon className="w-5 h-5" />
+            Retour
+          </Link>
+        </div>
+
           <div className={styles.articleContent}>
             <header className={styles.articleHeader}>
               <h1 className={styles.articleTitle}>{article.title}</h1>
               <div className={styles.articleMeta}>
                 <div className={styles.articleDate}>
-                  <CalendarIcon className="w-5 h-5" />
                   <span>
                     Publié le {new Date(article.created_at).toLocaleDateString('fr-FR', {
                       year: 'numeric',
