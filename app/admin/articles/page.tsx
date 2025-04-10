@@ -105,7 +105,7 @@ export default function NewArticle() {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="slug">Slug</label>
+          <label htmlFor="slug">Slug (lien permettant d'accéder à l'article)</label>
           <input
             type="text"
             id="slug"
@@ -191,7 +191,7 @@ export default function NewArticle() {
         <div className={styles.formGroup}>
           <label htmlFor="status">Statut</label>
           <select
-            id="status"
+            id="status" 
             value={formData.status}
             onChange={(e) => setFormData({ ...formData, status: e.target.value })}
           >

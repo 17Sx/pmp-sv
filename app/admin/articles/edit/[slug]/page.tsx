@@ -120,7 +120,7 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="slug">Slug</label>
+          <label htmlFor="slug">Slug (lien permettant d'accéder à l'article)</label>
           <input
             type="text"
             id="slug"
