@@ -59,7 +59,7 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
     if (!article) return;
 
     try {
-      const response = await fetch(`/api/articles/${article.id}`, {
+      const response = await fetch(`/api/articles/${params.slug}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -68,12 +68,17 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
       });
 
       if (!response.ok) {
-        throw new Error('Erreur lors de la mise à jour de l\'article');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Erreur lors de la mise à jour de l\'article');
       }
 
       router.push('/admin/articles/existing');
     } catch (error) {
-      setError('Erreur lors de la mise à jour de l\'article');
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('Erreur lors de la mise à jour de l\'article');
+      }
       console.error('Erreur:', error);
     }
   };
@@ -130,7 +135,7 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
           <Editor
             apiKey={process.env.NEXT_PUBLIC_TINYMCE_API_KEY}
             value={article.content}
-            onEditorChange={(content) => setArticle({ ...article, content })}
+            onEditorChange={(content: string) => setArticle({ ...article, content })}
             init={{
               height: 500,
               menubar: true,

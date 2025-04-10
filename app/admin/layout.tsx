@@ -64,9 +64,6 @@ export default function AdminLayout({
           <div className={styles.userInfo}>
             {user && (
               <>
-                <span className={styles.userName}>
-                  Connecté en tant que {user.name}
-                </span>
                 <button onClick={handleLogout} className={styles.logoutButton}>
                   Déconnexion
                 </button>
