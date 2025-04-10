@@ -43,6 +43,16 @@ export default function ArticlesPage() {
     fetchArticles();
   }, []);
 
+  // Fonction pour supprimer les balises HTML du contenu
+  const stripHtml = (html: string) => {
+    if (typeof document === 'undefined') {
+      return html.replace(/<[^>]*>?/gm, '');
+    }
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  };
+
   return (
     <>
       <Header />
@@ -94,9 +104,9 @@ export default function ArticlesPage() {
                   </span>
                 </div>
                 <p className={styles.articleExcerpt}>
-                  {article.content.length > 200
-                    ? `${article.content.substring(0, 200)}...`
-                    : article.content}
+                  {stripHtml(article.content).length > 200
+                    ? `${stripHtml(article.content).substring(0, 200)}...`
+                    : stripHtml(article.content)}
                 </p>
                 <a href={`/articles/${article.slug}`} className={styles.readMore}>
                   Lire la suite

@@ -11,6 +11,7 @@ interface Article {
   content: string;
   slug: string;
   created_at: string;
+  banner_image: string | null;
 }
 
 export default function ArticlesSection() {
@@ -98,7 +99,7 @@ export default function ArticlesSection() {
               <article key={article.id} className={styles.articleCard}>
                 <div className={styles.articleImage}>
                   <Image
-                    src="/img/about.jpg"
+                    src={article.banner_image || "/img/about.jpg"}
                     alt={article.title}
                     className={styles.articleImg}
                     fill

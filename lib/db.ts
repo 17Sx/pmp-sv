@@ -34,14 +34,27 @@ export async function testConnection() {
 }
 
 // Fonction pour exécuter des requêtes
-export async function query({ query: sql, values = [] }: QueryParams): Promise<QueryResult[]> {
+export async function query(queryOrParams: QueryParams | string, valuesOrNothing?: any[]): Promise<QueryResult[]> {
   try {
-    console.log('📝 Exécution de la requête:', sql);
-    console.log('📌 Paramètres:', values);
-    
-    const [results] = await pool.execute(sql, values);
-    console.log('✅ Requête exécutée avec succès');
-    return results as QueryResult[];
+    // Support de l'ancien format (query, values)
+    if (typeof queryOrParams === 'string') {
+      console.log('📝 Exécution de la requête (ancien format):', queryOrParams);
+      console.log('📌 Paramètres:', valuesOrNothing || []);
+      
+      const [results] = await pool.execute(queryOrParams, valuesOrNothing || []);
+      console.log('✅ Requête exécutée avec succès');
+      return results as QueryResult[];
+    } 
+    // Support du nouveau format ({query, values})
+    else {
+      const { query: sql, values = [] } = queryOrParams;
+      console.log('📝 Exécution de la requête (nouveau format):', sql);
+      console.log('📌 Paramètres:', values);
+      
+      const [results] = await pool.execute(sql, values);
+      console.log('✅ Requête exécutée avec succès');
+      return results as QueryResult[];
+    }
   } catch (error) {
     console.error('❌ Erreur lors de l\'exécution de la requête:', error);
     throw error;

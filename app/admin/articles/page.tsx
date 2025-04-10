@@ -115,6 +115,40 @@ export default function NewArticle() {
           />
         </div>
 
+        
+        <div className={styles.formGroup}>
+          <label htmlFor="images">Images de banniere</label>
+          <input
+            type="file"
+            id="images"
+            multiple
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+          {images.length > 0 && (
+            <div className={styles.imagePreviews}>
+              {images.map((image, index) => (
+                <div key={index} className={styles.imagePreview}>
+                  <img
+                    src={URL.createObjectURL(image)}
+                    alt={`Preview ${index + 1}`}
+                    className={styles.previewImage}
+                  />
+                  <div className={styles.imagePosition}>
+                    <label>Position dans l&apos;article:</label>
+                    <input
+                      type="number"
+                      value={imagePositions[image.name] || 0}
+                      onChange={(e) => handleImagePositionChange(image.name, parseInt(e.target.value))}
+                      min="0"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
         <div className={styles.formGroup}>
           <label htmlFor="content">Contenu</label>
           <Editor
@@ -166,42 +200,9 @@ export default function NewArticle() {
           </select>
         </div>
 
-        <div className={styles.formGroup}>
-          <label htmlFor="images">Images</label>
-          <input
-            type="file"
-            id="images"
-            multiple
-            accept="image/*"
-            onChange={handleImageUpload}
-          />
-          {images.length > 0 && (
-            <div className={styles.imagePreviews}>
-              {images.map((image, index) => (
-                <div key={index} className={styles.imagePreview}>
-                  <img
-                    src={URL.createObjectURL(image)}
-                    alt={`Preview ${index + 1}`}
-                    className={styles.previewImage}
-                  />
-                  <div className={styles.imagePosition}>
-                    <label>Position dans l'article:</label>
-                    <input
-                      type="number"
-                      value={imagePositions[image.name] || 0}
-                      onChange={(e) => handleImagePositionChange(image.name, parseInt(e.target.value))}
-                      min="0"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
         <div className={styles.formActions}>
           <button type="submit" className={styles.submitButton}>
-            Créer l'article
+            Créer l&apos;article
           </button>
           <button
             type="button"

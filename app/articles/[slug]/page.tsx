@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import styles from './article.module.css';
+
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';

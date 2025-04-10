@@ -162,3 +162,37 @@
     font-size: 1rem;
   }
 } 
+
+.backbtn {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 0 2rem;
+}
+
+.backbtn a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.backbtn a:hover {
+  background-color: #f1f5f9;
+  transform: translateX(-4px);
+}
+
+.backbtn svg {
+  transition: transform 0.3s ease;
+  color: #2563eb;
+  width: 20px;
+  height: 20px;
+}
+
+.backbtn a:hover svg {
+  transform: translateX(-4px);
+}
