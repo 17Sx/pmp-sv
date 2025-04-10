@@ -13,6 +13,7 @@ const ContactSection = () => {
     message: ''
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [acceptTerms, setAcceptTerms] = useState(false);
   const [status, setStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
@@ -28,6 +29,15 @@ const ContactSection = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    
+    if (!acceptTerms) {
+      setStatus({
+        type: 'error',
+        message: 'Veuillez accepter les conditions de confidentialité pour continuer'
+      });
+      return;
+    }
+    
     setIsLoading(true);
     setStatus({ type: null, message: '' });
 
@@ -170,6 +180,23 @@ const ContactSection = () => {
                   required
                   disabled={isLoading}
                 ></textarea>
+              </div>
+
+              <div className={styles.formGroup}>
+                <div className={styles.checkboxContainer}>
+                  <input
+                    type="checkbox"
+                    id="terms"
+                    name="terms"
+                    checked={acceptTerms}
+                    onChange={(e) => setAcceptTerms(e.target.checked)}
+                    className={styles.formCheckbox}
+                    disabled={isLoading}
+                  />
+                  <label htmlFor="terms" className={styles.checkboxLabel}>
+                    J&apos;accepte que mes données personnelles (nom, email, sujet et message) soient collectées et traitées par PMP dans le but de répondre à ma demande de contact. Ces données sont nécessaires au traitement de ma demande et seront conservées pendant la durée nécessaire à la gestion de notre relation. Je comprends que je dispose d&apos;un droit d&apos;accès, de rectification et de suppression de mes données conformément à la <a href="/confidentialite" target="_blank" className={styles.checkboxLink}>politique de confidentialité</a>. J&apos;accepte également les <a href="/conditions" target="_blank" className={styles.checkboxLink}>conditions générales d&apos;utilisation</a> du site.
+                  </label>
+                </div>
               </div>
 
               {status.type && (
