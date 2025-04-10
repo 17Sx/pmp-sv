@@ -52,11 +52,6 @@ const ContactSection = () => {
           message: data.error || 'Une erreur est survenue'
         });
       }
-    } catch (error) {
-      setStatus({
-        type: 'error',
-        message: 'Une erreur est survenue lors de l\'envoi du message'
-      });
     } finally {
       setIsLoading(false);
     }
