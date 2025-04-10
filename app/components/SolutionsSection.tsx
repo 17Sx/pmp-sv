@@ -93,13 +93,13 @@ export default function SolutionsSection() {
 
   return (
     <section id='solutions' className={styles.solutionsSection}>
-      <div className={styles.container}>
+      <div className={styles.solutionsContainer}>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className={styles.sectionTitle}
+          className={styles.solutionsTitle}
         >
           Nos Solutions
         </motion.h2>

@@ -6,6 +6,7 @@ import styles from '../page.module.css'
 
 export default function Header() {
   const [isDark, setIsDark] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,13 +28,31 @@ export default function Header() {
     const sections = document.querySelectorAll('section')
     sections.forEach((section) => observer.observe(section))
 
+    // Fermer le menu si on redimensionne l'écran
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isMenuOpen) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
     return () => {
       sections.forEach((section) => observer.unobserve(section))
+      window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [isMenuOpen])
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
 
   return (
-    <header className={`${styles.header} ${isDark ? styles.headerDark : ''}`}>
+    <header className={`${styles.header} ${isDark ? styles.headerDark : ''} ${isMenuOpen ? styles.headerMobileOpen : ''}`}>
       <div className={styles.logoContainer}>
         <Link href="/">
           <img 
@@ -44,23 +63,27 @@ export default function Header() {
         </Link>
       </div>
       
-      <nav className={styles.nav}>
-        <Link href="/articles" className={styles.navLink}>
+      <div className={styles.mobileMenuToggle} onClick={toggleMenu}>
+        <span className={`${styles.menuBar} ${isMenuOpen ? styles.menuBarActive : ''}`}></span>
+      </div>
+      
+      <nav className={`${styles.nav} ${isMenuOpen ? styles.navMobileOpen : ''}`}>
+        <Link href="/articles" className={styles.navLink} onClick={closeMenu}>
           Articles
         </Link>
-        <Link href="#solutions" className={styles.navLink}>
+        <Link href="#solutions" className={styles.navLink} onClick={closeMenu}>
           Nos solutions
         </Link>
-        <Link href="#about" className={styles.navLink}>
+        <Link href="#about" className={styles.navLink} onClick={closeMenu}>
           A propos
         </Link>
-        <Link href="#ceo" className={styles.navLink}>
+        <Link href="#ceo" className={styles.navLink} onClick={closeMenu}>
           Notre equipe
         </Link>
-        <Link href="#telechargement" className={styles.navLink}>
+        <Link href="#telechargement" className={styles.navLink} onClick={closeMenu}>
           Téléchargement
         </Link>
-        <Link href="#contact" className={styles.navLink}>
+        <Link href="#contact" className={styles.navLink} onClick={closeMenu}>
           Contact
         </Link>
       </nav>

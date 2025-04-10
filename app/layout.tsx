@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     { rel: 'icon', url: '/img/logo.png', type: 'image/png' },
     { rel: 'apple-touch-icon', url: '/img/logo.png', type: 'image/png' },
   ],
+  viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
 };
 
 export default function RootLayout({
@@ -25,6 +26,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/img/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/img/logo.png" type="image/png" />
+        <meta name="theme-color" content="#1E3A8A" />
       </head>
       <body className={inter.className}>
         <CustomCursor2 />
