@@ -14,6 +14,7 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  position: relative;
 }
 
 .loginCard h1 {
@@ -21,6 +22,54 @@
   margin-bottom: 2rem;
   text-align: center;
   font-size: 1.5rem;
+}
+
+.logoContainer {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.adminWarning {
+  position: absolute;
+  top: -75px;
+  left: 0;
+  right: 0;
+  background-color: rgba(45, 55, 72, 0.95);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.adminWarning a {
+  color: #38b2ac;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.adminWarning a:hover {
+  color: #4fd1c5;
 }
 
 .formGroup {

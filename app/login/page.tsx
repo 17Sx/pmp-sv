@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from './login.module.css';
 
@@ -30,7 +32,8 @@ export default function Login() {
         const data = await response.json();
         setError(data.error || 'Erreur de connexion');
       }
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       setError('Erreur de connexion');
     }
   };
@@ -42,6 +45,25 @@ export default function Login() {
         animate={{ opacity: 1, y: 0 }}
         className={styles.loginCard}
       >
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className={styles.adminWarning}
+        >
+          <p>Cette page est réservée aux administrateurs. Si vous n&apos;êtes pas administrateur, veuillez retourner à la page d&apos;<Link href="/">accueil</Link>.</p>
+        </motion.div>
+        
+        <div className={styles.logoContainer}>
+          <Image 
+            src="/img/logo.png" 
+            alt="PMP Logo" 
+            width={120} 
+            height={40} 
+            className={styles.logo}
+          />
+        </div>
+        
         <h1>Connexion</h1>
         {error && <div className={styles.error}>{error}</div>}
         <form onSubmit={handleSubmit}>
