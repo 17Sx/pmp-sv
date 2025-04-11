@@ -20,7 +20,8 @@ export async function GET() {
     // Convertir les dates en format ISO pour le frontend
     const formattedArticles = articles.map(article => ({
       ...article,
-      created_at: article.createdAt.toISOString()
+      created_at: article.createdAt.toISOString(),
+      banner_image: null // Pour l'instant, nous n'avons pas d'images
     }));
 
     return NextResponse.json({ articles: formattedArticles });
