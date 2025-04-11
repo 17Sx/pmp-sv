@@ -7,8 +7,8 @@
     }
   ],
   "env": {
-    "NEXT_PUBLIC_TINYMCE_API_KEY": "@next_public_tinymce_api_key",
-    "NEXTAUTH_SECRET": "@nextauth_secret",
-    "NEXTAUTH_URL": "@nextauth_url"
+    "NEXT_PUBLIC_TINYMCE_API_KEY": "s051sva0bzo4wmry70wfy1gdt336svdy9m1wfb9w8t8sq138",
+    "NEXTAUTH_SECRET": "pmpadmin",
+    "NEXTAUTH_URL": "https://pmp-sv.vercel.app"
   }
 } 
