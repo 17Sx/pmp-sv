@@ -93,7 +93,7 @@ const ContactSection = () => {
               <div className={styles.contactItem}>
                 <PhoneIcon className={styles.contactIcon} />
                 <div>
-                  <a href="tel:+33182888888" className={styles.contactValue}>01 45 30 90 20</a>
+                  <a href="tel:+33145309020 <ClockIcon className={styles.contactIcon} />" className={styles.contactValue}>01 45 30 90 20</a>
                 </div>
               </div>
               <div className={styles.contactItem}>
@@ -105,13 +105,13 @@ const ContactSection = () => {
               <div className={styles.contactItem}>
                 <MapPinIcon className={styles.contactIcon} />
                 <div>
-                  <span className={styles.contactValue}>2 rue de la Paix<br />75002 Paris</span>
+                  <span className={styles.contactValue}>5 rue de chazelles<br />75017 Paris</span>
                 </div>
               </div>
               <div className={styles.contactItem}>
                 <ClockIcon className={styles.contactIcon} />
                 <div>
-                  <span className={styles.contactValue}>Lundi - Vendredi<br />9h00 - 18h00</span>
+                  <span className={styles.contactValue}>Lundi - Vendredi<br />9h00 - 18h30</span>
                 </div>
               </div>
             </div>
