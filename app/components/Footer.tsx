@@ -33,10 +33,10 @@ export default function Footer() {
           <h3 className={styles.footerTitle}>Contact</h3>
           <div className={styles.footerContact}>
             <div className={styles.contactItem}>
-              <span>+33 1 23 45 67 89</span>
+              <span>01 45 30 90 20</span>
             </div>
             <div className={styles.contactItem}>
-              <span>contact@pmp.fr</span>
+              <span>contact@pmp-sa.net              </span>
             </div>
           </div>
         </div>

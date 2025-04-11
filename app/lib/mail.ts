@@ -20,7 +20,7 @@ export async function sendContactEmail(data: {
   try {
     await transporter.sendMail({
       from: `"${name}" <${email}>`,
-      to: 'contact@pmp.fr',
+      to: 'contact@pmp-sa.net',
       subject: `Contact PMP - ${subject}`,
       html: `
         <h2>Nouveau message de contact</h2>

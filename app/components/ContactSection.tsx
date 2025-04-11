@@ -93,13 +93,13 @@ const ContactSection = () => {
               <div className={styles.contactItem}>
                 <PhoneIcon className={styles.contactIcon} />
                 <div>
-                  <a href="tel:+33182888888" className={styles.contactValue}>01 82 88 88 88</a>
+                  <a href="tel:+33182888888" className={styles.contactValue}>01 45 30 90 20</a>
                 </div>
               </div>
               <div className={styles.contactItem}>
                 <EnvelopeIcon className={styles.contactIcon} />
                 <div>
-                  <a href="mailto:contact@pmp.fr" className={styles.contactValue}>contact@pmp.fr</a>
+                  <a href="mailto:contact@pmp-sa.net" className={styles.contactValue}>contact@pmp.fr</a>
                 </div>
               </div>
               <div className={styles.contactItem}>
