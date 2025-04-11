@@ -6,6 +6,13 @@ import AdminFloatingButton from './components/AdminFloatingButton';
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  maximumScale: 1.0,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   title: "PMP - Solutions Informatiques Professionnelles",
   description: "PMP vous accompagne dans votre transformation digitale avec des solutions sur mesure et un support technique de qualité.",
@@ -13,7 +20,6 @@ export const metadata: Metadata = {
     { rel: 'icon', url: '/img/logo.png', type: 'image/png' },
     { rel: 'apple-touch-icon', url: '/img/logo.png', type: 'image/png' },
   ],
-  viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
 };
 
 export default function RootLayout({
