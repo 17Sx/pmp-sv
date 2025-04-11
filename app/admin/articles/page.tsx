@@ -251,6 +251,11 @@ export default function NewArticle() {
               Envoyer cet article aux abonnés de la newsletter {formData.status !== 'published' && "(uniquement si l'article est publié)"}
             </label>
           </div>
+          {formData.sendNewsletter && formData.status !== 'published' && (
+            <p className={styles.newsletterWarning}>
+              L'article sera envoyé aux abonnés seulement s'il est publié.
+            </p>
+          )}
         </div>
 
         {submitStatus && (

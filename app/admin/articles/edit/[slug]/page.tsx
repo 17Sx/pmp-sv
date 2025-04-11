@@ -198,29 +198,74 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
         </div>
 
         <div className={styles.formGroup}>
-          <div className={styles.checkboxContainer}>
-            <input
-              type="checkbox"
-              id="sendNewsletter"
-              checked={sendNewsletter}
-              onChange={(e) => setSendNewsletter(e.target.checked)}
-              className={styles.formCheckbox}
-            />
-            <label htmlFor="sendNewsletter" className={styles.checkboxLabel}>
-              Envoyer cet article aux abonnés de la newsletter {article.status !== 'published' && "(uniquement si l'article est publié)"}
-            </label>
-          </div>
-          
-          {article.sentInNewsletter && (
+          {!article.sentInNewsletter ? (
+            <button
+              type="button"
+              className={styles.newsletterButton}
+              onClick={async () => {
+                if (article.status === 'published' && article.id) {
+                  setIsSubmitting(true);
+                  try {
+                    const response = await fetch('/api/newsletter/send', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        articleId: article.id,
+                      }),
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                      setSubmitSuccess(true);
+                      setSendNewsletter(true);
+                      // Recharger l'article pour mettre à jour son statut
+                      fetchArticle();
+                      setTimeout(() => {
+                        setSubmitSuccess(false);
+                      }, 3000);
+                    } else {
+                      throw new Error(data.error || 'Erreur lors de l\'envoi de la newsletter');
+                    }
+                  } catch (error) {
+                    if (error instanceof Error) {
+                      setError(error.message);
+                    } else {
+                      setError('Erreur lors de l\'envoi de la newsletter');
+                    }
+                    console.error('Erreur:', error);
+                  } finally {
+                    setIsSubmitting(false);
+                  }
+                }
+              }}
+              disabled={isSubmitting || article.status !== 'published'}
+            >
+              {isSubmitting ? 'Envoi en cours...' : 'Envoyer cet article aux abonnés de la newsletter'}
+            </button>
+          ) : (
             <p className={styles.newsletterStatus}>
               Cet article a déjà été envoyé aux abonnés de la newsletter.
             </p>
           )}
+          {article.status !== 'published' && !article.sentInNewsletter && (
+            <p className={styles.newsletterWarning}>
+              L'article doit être publié pour pouvoir envoyer la newsletter.
+            </p>
+          )}
         </div>
 
-        {submitSuccess && (
+        {submitSuccess && sendNewsletter && (
           <div className={styles.success}>
-            Article mis à jour avec succès {sendNewsletter && article.status === 'published' && '- Newsletter envoyée'}
+            Newsletter envoyée avec succès !
+          </div>
+        )}
+
+        {submitSuccess && !sendNewsletter && (
+          <div className={styles.success}>
+            Article mis à jour avec succès
           </div>
         )}
 
