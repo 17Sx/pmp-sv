@@ -75,13 +75,13 @@ export default function Header() {
           Nos solutions
         </Link>
         <Link href="#about" className={styles.navLink} onClick={closeMenu}>
-          A propos
+        À propos
         </Link>
         <Link href="#ceo" className={styles.navLink} onClick={closeMenu}>
-          Notre equipe
+          Notre équipe
         </Link>
         <Link href="#telechargement" className={styles.navLink} onClick={closeMenu}>
-          Téléchargement
+          Téléchargements
         </Link>
         <Link href="#contact" className={styles.navLink} onClick={closeMenu}>
           Contact
