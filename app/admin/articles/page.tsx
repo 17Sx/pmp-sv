@@ -239,23 +239,7 @@ export default function NewArticle() {
         </div>
 
         <div className={styles.formGroup}>
-          <div className={styles.checkboxContainer}>
-            <input
-              type="checkbox"
-              id="sendNewsletter"
-              checked={formData.sendNewsletter}
-              onChange={(e) => setFormData({ ...formData, sendNewsletter: e.target.checked })}
-              className={styles.formCheckbox}
-            />
-            <label htmlFor="sendNewsletter" className={styles.checkboxLabel}>
-              Envoyer cet article aux abonnés de la newsletter {formData.status !== 'published' && "(uniquement si l'article est publié)"}
-            </label>
-          </div>
-          {formData.sendNewsletter && formData.status !== 'published' && (
-            <p className={styles.newsletterWarning}>
-              L'article sera envoyé aux abonnés seulement s'il est publié.
-            </p>
-          )}
+          <p>Pour envoyer l'article à la newsletter, il faut que l'article soit publié et le bouton de la page specifique a l'article sois cliqué une fois l'article publié</p>
         </div>
 
         {submitStatus && (
