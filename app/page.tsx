@@ -82,8 +82,8 @@ export default function Home() {
       <TestimonialsSection />
       <ArticlesSection />
       <DownloadSection />
-      <ContactSection />
       <NewsletterSection />
+      <ContactSection />
       <Footer />
     </main>
   )
