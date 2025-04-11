@@ -251,5 +251,5 @@ Accédez au panneau d'administration via `/admin` après connexion. Fonctionnali
 ---
 
 <div align="center">
-  Made with ❤️ by 17Sx
+  Made with ❤️ by <a href="https://github.com/17Sx">17Sx</a>
 </div>
