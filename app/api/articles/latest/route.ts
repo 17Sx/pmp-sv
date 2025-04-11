@@ -17,7 +17,13 @@ export async function GET() {
       }
     });
 
-    return NextResponse.json({ articles });
+    // Convertir les dates en format ISO pour le frontend
+    const formattedArticles = articles.map(article => ({
+      ...article,
+      created_at: article.createdAt.toISOString()
+    }));
+
+    return NextResponse.json({ articles: formattedArticles });
   } catch (error) {
     console.error('Error fetching latest articles:', error);
     return NextResponse.json({ 
