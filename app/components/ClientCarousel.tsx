@@ -43,7 +43,7 @@ export default function ClientCarousel() {
         transition={{ duration: 0.5 }}
         className={styles.clientsTitle}
       >
-        Les entreprises qui nous font confiance
+        Les entreprises qui nous ont fait confiance
       </motion.h2>
       
       <div className={styles.clientsCarousel}>
