@@ -12,8 +12,7 @@ export async function GET() {
         id: true,
         title: true,
         slug: true,
-        excerpt: true,
-        imageUrl: true,
+        content: true,
         createdAt: true
       }
     });
