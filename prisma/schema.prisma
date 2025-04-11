@@ -17,13 +17,27 @@ model User {
 }
 
 model Article {
-    id         Int      @id @default(autoincrement())
-    title      String
-    content    String   @db.Text
-    slug       String   @unique
-    author_id  Int?
-    author     User?    @relation(fields: [author_id], references: [id])
-    status     String   @default("draft")
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    id               Int      @id @default(autoincrement())
+    title            String
+    slug             String   @unique
+    content          String   @db.Text
+    author_id        Int?
+    author           User?    @relation(fields: [author_id], references: [id])
+    status           String   @default("draft")
+    sentInNewsletter Boolean  @default(false) @map("sent_in_newsletter")
+    created_at       DateTime @default(now())
+    updated_at       DateTime @updatedAt
+
+    @@map("articles")
+}
+
+model NewsletterSubscriber {
+    id           Int      @id @default(autoincrement())
+    email        String   @unique
+    subscribedAt DateTime @default(now()) @map("subscribed_at")
+    active       Boolean  @default(true)
+    createdAt    DateTime @default(now()) @map("created_at")
+    updatedAt    DateTime @updatedAt @map("updated_at")
+
+    @@map("newsletter_subscribers")
 }

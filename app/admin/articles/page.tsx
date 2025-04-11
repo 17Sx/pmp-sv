@@ -17,10 +17,13 @@ export default function NewArticle() {
     title: '',
     content: '',
     slug: '',
-    status: 'draft'
+    status: 'draft',
+    sendNewsletter: false
   });
   const [images, setImages] = useState<File[]>([]);
   const [imagePositions, setImagePositions] = useState<{ [key: string]: number }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -52,12 +55,16 @@ export default function NewArticle() {
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    
     try {
       const formDataToSend = new FormData();
       formDataToSend.append('title', formData.title);
       formDataToSend.append('content', formData.content);
       formDataToSend.append('slug', formData.slug);
       formDataToSend.append('status', formData.status);
+      formDataToSend.append('sendNewsletter', formData.sendNewsletter.toString());
       
       images.forEach((image, index) => {
         formDataToSend.append('images', image);
@@ -69,11 +76,42 @@ export default function NewArticle() {
         body: formDataToSend,
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        router.push('/admin/articles/existing');
+        setSubmitStatus({
+          type: 'success',
+          message: 'Article créé avec succès' + (formData.sendNewsletter ? ' et newsletter programmée' : '')
+        });
+        
+        // Si l'article est publié et que l'option newsletter est activée, on envoie la newsletter
+        if (formData.status === 'published' && formData.sendNewsletter && data.article?.id) {
+          await fetch('/api/newsletter/send', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              articleId: data.article.id
+            }),
+          });
+        }
+
+        // Redirection après un court délai pour montrer le message de succès
+        setTimeout(() => {
+          router.push('/admin/articles/existing');
+        }, 1500);
+      } else {
+        throw new Error(data.error || 'Erreur lors de la création');
       }
     } catch (error) {
       console.error('Erreur lors de la création:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Erreur lors de la création de l\'article'
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -200,14 +238,36 @@ export default function NewArticle() {
           </select>
         </div>
 
+        <div className={styles.formGroup}>
+          <div className={styles.checkboxContainer}>
+            <input
+              type="checkbox"
+              id="sendNewsletter"
+              checked={formData.sendNewsletter}
+              onChange={(e) => setFormData({ ...formData, sendNewsletter: e.target.checked })}
+              className={styles.formCheckbox}
+            />
+            <label htmlFor="sendNewsletter" className={styles.checkboxLabel}>
+              Envoyer cet article aux abonnés de la newsletter {formData.status !== 'published' && "(uniquement si l'article est publié)"}
+            </label>
+          </div>
+        </div>
+
+        {submitStatus && (
+          <div className={submitStatus.type === 'success' ? styles.success : styles.error}>
+            {submitStatus.message}
+          </div>
+        )}
+
         <div className={styles.formActions}>
-          <button type="submit" className={styles.submitButton}>
-            Créer l&apos;article
+          <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+            {isSubmitting ? 'Création en cours...' : 'Créer l\'article'}
           </button>
           <button
             type="button"
             onClick={() => router.push('/admin/articles/existing')}
             className={styles.cancelButton}
+            disabled={isSubmitting}
           >
             Annuler
           </button>

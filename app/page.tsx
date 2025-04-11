@@ -14,6 +14,8 @@ import ContactSection from './components/ContactSection'
 import DownloadSection from './components/DownloadSection'
 import ClientCarousel from './components/ClientCarousel'
 import ArticlesSection from './components/ArticlesSection'
+import NewsletterSection from './components/NewsletterSection'
+import Footer from './components/Footer'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -81,54 +83,8 @@ export default function Home() {
       <ArticlesSection />
       <DownloadSection />
       <ContactSection />
-
-      <footer className={styles.footer}>
-        <div className={styles.footerContainer}>
-          <div>
-            <Image
-              src="/img/logo.png"
-              alt="PMP Logo"
-              width={150}
-              height={50}
-              className={styles.footerLogo}
-            />
-            <p className={styles.footerText}>
-              Solutions informatiques professionnelles pour les entreprises.
-            </p>
-          </div>
-          <div>
-            <h3 className={styles.footerTitle}>Liens rapides</h3>
-            <div className={styles.footerLinks}>
-              <a href="#solutions" className={styles.footerLink}>
-                Solutions
-              </a>
-              <a href="#about" className={styles.footerLink}>
-                À propos
-              </a>
-              <a href="#contact" className={styles.footerLink}>
-                Contact
-              </a>
-              <Link href="/blog" className={styles.footerLink}>
-                Blog
-              </Link>
-            </div>
-          </div>
-          <div>
-            <h3 className={styles.footerTitle}>Contact</h3>
-            <div className={styles.footerContact}>
-              <div className={styles.contactItem}>
-                <span>+33 1 23 45 67 89</span>
-              </div>
-              <div className={styles.contactItem}>
-                <span>contact@pmp.fr</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.copyright}>
-          © {new Date().getFullYear()} PMP. Tous droits réservés.
-        </div>
-      </footer>
+      <NewsletterSection />
+      <Footer />
     </main>
   )
 }

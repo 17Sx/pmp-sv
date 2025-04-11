@@ -11,6 +11,7 @@ interface Article {
   content: string;
   slug: string;
   status: string;
+  sentInNewsletter?: boolean;
 }
 
 export default function EditArticle({ params }: { params: { slug: string } }) {
@@ -18,6 +19,9 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
   const [article, setArticle] = useState<Article | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [sendNewsletter, setSendNewsletter] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -57,6 +61,10 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!article) return;
+    
+    setIsSubmitting(true);
+    setError(null);
+    setSubmitSuccess(false);
 
     try {
       const response = await fetch(`/api/articles/${params.slug}`, {
@@ -64,15 +72,37 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(article),
+        body: JSON.stringify({
+          ...article,
+          sendNewsletter
+        }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Erreur lors de la mise à jour de l\'article');
+        throw new Error(data.error || 'Erreur lors de la mise à jour de l\'article');
       }
 
-      router.push('/admin/articles/existing');
+      // Si l'article est publié et que l'option newsletter est activée
+      if (article.status === 'published' && sendNewsletter && article.id) {
+        await fetch('/api/newsletter/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            articleId: article.id,
+          }),
+        });
+      }
+
+      setSubmitSuccess(true);
+      
+      // Redirection après un court délai pour montrer le message de succès
+      setTimeout(() => {
+        router.push('/admin/articles/existing');
+      }, 1500);
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -80,6 +110,8 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
         setError('Erreur lors de la mise à jour de l\'article');
       }
       console.error('Erreur:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -87,7 +119,7 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
     return <div className={styles.adminContainer}>Chargement...</div>;
   }
 
-  if (error) {
+  if (error && !submitSuccess) {
     return (
       <div className={styles.adminContainer}>
         <div className={styles.error}>{error}</div>
@@ -165,14 +197,50 @@ export default function EditArticle({ params }: { params: { slug: string } }) {
           </select>
         </div>
 
+        <div className={styles.formGroup}>
+          <div className={styles.checkboxContainer}>
+            <input
+              type="checkbox"
+              id="sendNewsletter"
+              checked={sendNewsletter}
+              onChange={(e) => setSendNewsletter(e.target.checked)}
+              className={styles.formCheckbox}
+            />
+            <label htmlFor="sendNewsletter" className={styles.checkboxLabel}>
+              Envoyer cet article aux abonnés de la newsletter {article.status !== 'published' && "(uniquement si l'article est publié)"}
+            </label>
+          </div>
+          
+          {article.sentInNewsletter && (
+            <p className={styles.newsletterStatus}>
+              Cet article a déjà été envoyé aux abonnés de la newsletter.
+            </p>
+          )}
+        </div>
+
+        {submitSuccess && (
+          <div className={styles.success}>
+            Article mis à jour avec succès {sendNewsletter && article.status === 'published' && '- Newsletter envoyée'}
+          </div>
+        )}
+
+        {error && (
+          <div className={styles.error}>{error}</div>
+        )}
+
         <div className={styles.formActions}>
-          <button type="submit" className={styles.submitButton}>
-            Enregistrer les modifications
+          <button 
+            type="submit" 
+            className={styles.submitButton}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Enregistrement...' : 'Enregistrer les modifications'}
           </button>
           <button
             type="button"
             onClick={() => router.push('/admin/articles/existing')}
             className={styles.cancelButton}
+            disabled={isSubmitting}
           >
             Annuler
           </button>
