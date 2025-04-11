@@ -1,27 +1,24 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import { query } from '@/lib/db';
-
-interface User {
-  id: number;
-  email: string;
-  password_hash: string;
-  created_at: Date;
-}
+import prisma from '@/app/lib/prisma';
 
 export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
-    console.log('📨 Nouvelle tentative d\'inscription pour:', email);
+
+    if (!email || !password) {
+      return NextResponse.json(
+        { error: 'Email et mot de passe requis' },
+        { status: 400 }
+      );
+    }
 
     // Vérifier si l'email existe déjà
-    const existingUsers = await query(
-      'SELECT * FROM users WHERE email = ?',
-      [email]
-    ) as User[];
+    const existingUser = await prisma.user.findUnique({
+      where: { email }
+    });
 
-    if (existingUsers.length > 0) {
-      console.log('❌ Email déjà utilisé:', email);
+    if (existingUser) {
       return NextResponse.json(
         { error: 'Cet email est déjà utilisé' },
         { status: 400 }
@@ -30,23 +27,31 @@ export async function POST(request: Request) {
 
     // Hasher le mot de passe
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log('🔒 Mot de passe haché avec succès');
 
-    // Insérer le nouvel utilisateur
-    await query(
-      'INSERT INTO users (email, password_hash, created_at) VALUES (?, ?, NOW())',
-      [email, hashedPassword]
-    );
-    console.log('✅ Utilisateur créé avec succès:', email);
+    // Créer l'utilisateur
+    const user = await prisma.user.create({
+      data: {
+        email,
+        password_hash: hashedPassword,
+        role: 'admin'
+      }
+    });
 
-    return NextResponse.json(
-      { message: 'Inscription réussie' },
-      { status: 201 }
-    );
+    return NextResponse.json({ 
+      message: 'Utilisateur créé avec succès',
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role
+      }
+    });
   } catch (error) {
-    console.error('❌ Erreur lors de l\'inscription:', error);
+    console.error('Erreur lors de l\'inscription:', error);
     return NextResponse.json(
-      { error: 'Erreur lors de l\'inscription' },
+      { 
+        error: 'Erreur lors de l\'inscription',
+        details: error instanceof Error ? error.message : 'Une erreur inconnue est survenue'
+      },
       { status: 500 }
     );
   }
