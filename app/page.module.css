@@ -129,9 +129,16 @@
   z-index: 1;
 }
 
+.heroSubtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1E3A8A;
+  margin-bottom: 1.5rem;
+}
+
 .heroLeft {
   position: relative;
-  max-width: 500px;
+  max-width: 700px;
 }
 
 .heroRight {
@@ -166,6 +173,7 @@
   color: #1E3A8A;
   margin-bottom: 1.5rem;
   line-height: 1.1;
+  width: 50rem;
 }
 
 .highlight {

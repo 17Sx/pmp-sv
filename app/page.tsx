@@ -45,11 +45,15 @@ export default function Home() {
               className={styles.heroLogo}
             />
             <h1 className={styles.heroTitle}>
-              Solutions Informatiques<br />
-              <span className={styles.highlight}>Professionnelles</span>
+              <span className={styles.highlight}>Palm Managing Project (PMP)</span>
             </h1>
+
+            <h3 className={styles.heroSubtitle}>
+              Accélérez votre performance commerciale en pharmacie
+            </h3>
+
             <p className={styles.heroText}>
-              PMP vous accompagne dans votre transformation digitale avec des solutions sur mesure et un support technique de qualité.
+            PMP accompagne les directions commerciales de laboratoires pharmaceutiques et de groupements d’officines dans l’optimisation de leur efficacité terrain, grâce à des solutions digitales sur mesure.
             </p>
             <div className={styles.heroButtons}>
               <Link href="#contact" className={styles.btnPrimary}>
