@@ -68,17 +68,17 @@ export default function Header() {
       </div>
       
       <nav className={`${styles.nav} ${isMenuOpen ? styles.navMobileOpen : ''}`}>
-        <Link href="/articles" className={styles.navLink} onClick={closeMenu}>
-          Articles
+      <Link href="#about" className={styles.navLink} onClick={closeMenu}>
+        À propos
         </Link>
         <Link href="#solutions" className={styles.navLink} onClick={closeMenu}>
           Nos solutions
         </Link>
-        <Link href="#about" className={styles.navLink} onClick={closeMenu}>
-        À propos
-        </Link>
         <Link href="#ceo" className={styles.navLink} onClick={closeMenu}>
           Notre équipe
+        </Link>
+        <Link href="/articles" className={styles.navLink} onClick={closeMenu}>
+          Articles
         </Link>
         <Link href="#telechargement" className={styles.navLink} onClick={closeMenu}>
           Téléchargements
