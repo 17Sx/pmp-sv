@@ -75,8 +75,8 @@ export default function Home() {
         </div>
       </section>
 
+      <AboutSection />  
       <SolutionsSection />
-      <AboutSection />
       <CEOSection />
       <ClientCarousel />
       <TestimonialsSection />

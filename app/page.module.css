@@ -505,6 +505,110 @@
   margin: 0;
 }
 
+.aboutSubtitle {
+  color: #1E3A8A;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.challengesList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  width: 80rem;
+}
+
+.challengeItem {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.challengeItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.challengeItem h4 {
+  color: #1E3A8A;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  margin-left: 1rem;
+
+}
+
+.challengeItem p {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-left: 1rem;
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.benefitsList li {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.benefitsList li::before {
+  content: '✓';
+  color: #1E3A8A;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.focusText {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.6;
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #1E3A8A;
+}
+
+@media (max-width: 768px) {
+  .aboutSubtitle {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .challengeItem {
+    padding: 1.25rem;
+  }
+
+  .challengeItem h4 {
+    font-size: 1rem;
+  }
+
+  .benefitsList li {
+    font-size: 0.95rem;
+  }
+
+  .focusText {
+    font-size: 0.95rem;
+    padding: 1.25rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .aboutContainer {
     grid-template-columns: 1fr;
@@ -2307,6 +2411,137 @@
   .newsletterButton {
     width: 100%;
     padding: 0.85rem 0;
+  }
+}
+
+.aboutContainerNew {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.aboutHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.aboutIntro {
+  padding-right: 2rem;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.gridItem {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.gridItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gridTitle {
+  color: #1E3A8A;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(30, 58, 138, 0.1);
+}
+
+.gridContent {
+  height: 100%;
+}
+
+.challengeItem {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.challengeItem:last-child {
+  border-bottom: none;
+}
+
+.challengeItem h4 {
+  color: #1E3A8A;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.challengeItem p {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefitsList li {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding: 0.75rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.benefitsList li:last-child {
+  border-bottom: none;
+}
+
+.benefitsList li::before {
+  content: '✓';
+  color: #1E3A8A;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.focusText {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  padding: 1rem;
+  background: rgba(30, 58, 138, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid #1E3A8A;
+}
+
+@media (max-width: 1024px) {
+  .aboutHeader {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .aboutIntro {
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .gridItem {
+    padding: 1.5rem;
   }
 }
 
