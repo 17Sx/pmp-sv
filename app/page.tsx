@@ -37,7 +37,7 @@ export default function Home() {
         <div className={styles.heroContent}>
           <div className={styles.heroLeft}>
             <Image 
-              src="http://server.pmp.fr/pmp/icon/logo.png" 
+              src="/img/logo.png" 
               alt="Logo" 
               width={150} 
               height={50} 
