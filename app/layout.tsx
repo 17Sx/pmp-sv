@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "PMP - Solutions Informatiques Professionnelles",
   description: "PMP vous accompagne dans votre transformation digitale avec des solutions sur mesure et un support technique de qualité.",
   icons: [
-    { rel: 'icon', url: '/img/logo.png', type: 'image/png' },
-    { rel: 'apple-touch-icon', url: '/img/logo.png', type: 'image/png' },
+    { rel: 'icon', url: 'http://server.pmp.fr/pmp/icon/logo.png', type: 'image/png' },
+    { rel: 'apple-touch-icon', url: 'http://server.pmp.fr/pmp/icon/logo.png', type: 'image/png' },
   ],
 };
 
@@ -29,8 +29,8 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link rel="icon" href="/img/logo.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/img/logo.png" type="image/png" />
+        <link rel="icon" href="http://server.pmp.fr/pmp/icon/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="http://server.pmp.fr/pmp/icon/logo.png" type="image/png" />
         <meta name="theme-color" content="#1E3A8A" />
       </head>
       <body className={inter.className}>

@@ -56,7 +56,7 @@ export default function Login() {
         
         <div className={styles.logoContainer}>
           <Image 
-            src="/img/logo.png" 
+            src="http://server.pmp.fr/pmp/icon/logo.png" 
             alt="PMP Logo" 
             width={120} 
             height={40} 

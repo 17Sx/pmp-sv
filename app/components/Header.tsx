@@ -56,7 +56,7 @@ export default function Header() {
       <div className={styles.logoContainer}>
         <Link href="/">
           <img 
-            src="/img/logo.png" 
+            src="http://server.pmp.fr/pmp/icon/logo.png" 
             alt="Logo PMP" 
             className={styles.logo}
           />

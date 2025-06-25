@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['pmpadmin.pmp.fr'],
+    domains: ['pmpadmin.pmp.fr', 'server.pmp.fr'],
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {

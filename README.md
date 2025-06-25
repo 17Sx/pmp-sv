@@ -1,7 +1,7 @@
 # PMP Solutions Website
 
 <div align="center">
-  <img src="public/img/logo.png" alt="PMP Solutions Logo" width="100"/>
+  <img src="http://server.pmp.fr/pmp/icon/logo.png" alt="PMP Solutions Logo" width="100"/>
   
   [![Next.js](https://img.shields.io/badge/Next.js-13.0.0-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
@@ -127,7 +127,7 @@ Access the admin panel at `/admin` after logging in. Features include:
 # 🇫🇷 PMP Solutions Website (Version Française)
 
 <div align="center">
-  <img src="public/img/logo.png" alt="PMP Solutions Logo" width="100"/>
+  <img src="http://server.pmp.fr/pmp/icon/logo.png" alt="PMP Solutions Logo" width="100"/>
   
   [![Next.js](https://img.shields.io/badge/Next.js-13.0.0-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
