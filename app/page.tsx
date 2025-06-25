@@ -52,7 +52,7 @@ export default function Home() {
             </h3>
 
             <p className={styles.heroText}>
-            PMP accompagne les directions commerciales de laboratoires pharmaceutiques et de groupements d’officines dans l’optimisation de leur efficacité terrain, grâce à des solutions digitales sur mesure.
+            PMP accompagne les directions commerciales de laboratoires pharmaceutiques et de groupements d'officines dans l'optimisation de leur efficacité terrain, grâce à des solutions digitales sur mesure.
             </p>
             <div className={styles.heroButtons}>
               <Link href="#contact" className={styles.btnPrimary}>

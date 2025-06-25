@@ -7,7 +7,7 @@ export default function Footer() {
       <div className={styles.footerContainer}>
         <div className={styles.footerSection}>
           <img
-            src="/img/logo.png"
+            src="http://server.pmp.fr/pmp/icon/logo.png"
             alt="PMP Logo"
             className={styles.footerLogo}
           />
