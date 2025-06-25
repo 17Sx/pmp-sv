@@ -6,7 +6,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Header from './components/Header'
 import AboutSection from './components/AboutSection'
-import CEOSection from './components/CEOSection'
 import TestimonialsSection from './components/TestimonialsSection'
 import BackgroundShapes from './components/BackgroundShapes'
 import SolutionsSection from './components/SolutionsSection'
@@ -81,7 +80,6 @@ export default function Home() {
 
       <AboutSection />  
       <SolutionsSection />
-      <CEOSection />
       <ClientCarousel />
       <TestimonialsSection />
       <ArticlesSection />

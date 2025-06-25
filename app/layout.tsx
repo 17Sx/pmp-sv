@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import CustomCursor2 from './components/CustomCursor2';
 import AdminFloatingButton from './components/AdminFloatingButton';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,7 +34,6 @@ export default function RootLayout({
         <meta name="theme-color" content="#1E3A8A" />
       </head>
       <body className={inter.className}>
-        <CustomCursor2 />
         <main style={{ paddingTop: '5rem' }}>
           {children}
         </main>
