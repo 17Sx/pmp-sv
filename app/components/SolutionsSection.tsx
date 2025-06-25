@@ -1,44 +1,38 @@
-import { MagnifyingGlassIcon, CodeBracketIcon, ComputerDesktopIcon, AcademicCapIcon, PhoneIcon, ShieldCheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon, UserGroupIcon, CameraIcon, DocumentTextIcon, ChartBarIcon, XMarkIcon, CheckCircleIcon, ArrowRightIcon, StarIcon, CogIcon, ShieldCheckIcon, ClockIcon, MapPinIcon, ChartPieIcon, DevicePhoneMobileIcon, BuildingStorefrontIcon, DocumentCheckIcon, CpuChipIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import styles from '../page.module.css';
 import { useState } from 'react';
 
 const solutions = [
   {
-    title: "Une étude complète de vos besoins",
-    description: "Analyse approfondie de vos processus et identification des solutions les plus adaptées à votre entreprise.",
-    detailedInfo: "Notre équipe d'experts réalise une analyse approfondie de vos processus métiers, identifie les points d'amélioration et conçoit des solutions personnalisées pour optimiser votre efficacité opérationnelle. Nous utilisons des méthodologies éprouvées pour comprendre en profondeur vos défis spécifiques et vous proposer des recommandations adaptées à votre secteur d'activité et à vos objectifs stratégiques.",
-    icon: <MagnifyingGlassIcon className={styles.serviceIcon} />
+    title: "PMP CDE",
+    description: "L'efficacité terrain au service de la pharmacie",
+    detailedInfo: "Optimisez vos tournées et vos commandes avec notre application dédiée au secteur pharmaceutique.\n\nConçue pour les délégués pharmaceutiques, notre application de prise de commande simplifie chaque étape de la relation client en officine. En un seul outil, vous accédez à l'ensemble du catalogue produits, aux conditions commerciales personnalisées, aux promotions en cours, aux stocks disponibles et à l'historique d'achat de chaque pharmacie.\n\nGrâce à une interface intuitive la gestion automatisée et personnalisée des conditions commerciales, vous saisissez vos commandes en quelques clics, directement pendant la visite, même en mode hors connexion. L'application intègre également des outils de reporting, de géolocalisation, de suivi d'objectifs, et de gestion des tournées, pour un pilotage optimal de votre activité commerciale.\n\n✅ Avantages clés :\n• Gain de temps lors des visites\n• Réduction des erreurs de saisie\n• Suivi précis des performances commerciales\n• Amélioration de la satisfaction client\n\nGagnez en productivité, valorisez votre relation client et boostez vos ventes en pharmacie.\nNotre solution est 100 % adaptée aux exigences du secteur pharmaceutique.",
+    icon: <ShoppingCartIcon className={styles.serviceIcon} />
   },
   {
-    title: "Des applications personnalisées",
-    description: "Développement de solutions sur mesure répondant précisément à vos besoins spécifiques.",
-    detailedInfo: "Nos développeurs créent des applications entièrement personnalisées qui répondent précisément à vos besoins spécifiques. Qu'il s'agisse d'applications web, mobiles ou de bureau, nous utilisons les technologies les plus récentes pour garantir performance, évolutivité et sécurité. Chaque solution est conçue pour s'intégrer parfaitement à vos systèmes existants et améliorer votre productivité quotidienne.",
-    icon: <CodeBracketIcon className={styles.serviceIcon} />
+    title: "PMP VM",
+    description: "Renforcez l'impact de vos visites médicales avec une application intelligente",
+    detailedInfo: "La visite médicale réinventée, au bout des doigts.\n\nUne solution mobile sur smartphone pour optimiser vos listes médicales.\n\nConçue pour les délégués médicaux, notre application accompagne vos visites en cabinet, clinique ou hôpital. Elle permet de planifier vos rendez-vous, suivre les contacts prescripteurs, tout en respectant le cycle de communication du laboratoire. Vous pouvez aussi enregistrer les retours terrain, les intentions de prescription, et tracer précisément vos interactions.\n\nLa saisie des comptes rendus, la gestion des territoires, l'analyse de la couverture et des fréquences de visite sont centralisées dans un seul outil connecté à votre CRM. L'application reste fonctionnelle hors ligne, pour une utilisation fluide en toutes circonstances.\n\n✅ Avantages pour les visiteurs médicaux :\n• Organisation des tournées et optimisation des trajets\n• Historique des échanges avec chaque médecin\n• Reporting automatisé vers les équipes marketing et réglementaires\n• Respect de la conformité réglementaire (traçabilité, charte de la VM)\n\nSoyez plus impactant à chaque visite. Gagnez en réactivité, en efficacité et en professionnalisme.",
+    icon: <UserGroupIcon className={styles.serviceIcon} />
   },
   {
-    title: "Des conseils pour le choix du matériel",
-    description: "Expertise et recommandations pour sélectionner l'équipement le plus adapté à vos besoins.",
-    detailedInfo: "Notre expertise en matériel informatique vous permet de faire les choix les plus judicieux pour votre infrastructure. Nous vous guidons dans la sélection des équipements adaptés à vos besoins spécifiques et à votre budget. Nos recommandations prennent en compte les dernières innovations technologiques tout en garantissant la compatibilité avec vos systèmes existants pour une transition en douceur.",
-    icon: <ComputerDesktopIcon className={styles.serviceIcon} />
+    title: "PMP MERCH",
+    description: "Application de merchandising parapharmacie avec prise de photos",
+    detailedInfo: "Pilotez vos implantations et valorisez vos marques en point de vente.\n\nConçue pour les équipes terrain intervenant en parapharmacie, notre application permet de réaliser des relevés précis et illustrés directement sur tablette ou smartphone. Elle intègre la prise de photos horodatées et géolocalisées pour documenter l'état réel des rayons, PLV et présentations produits.\n\nFonctionnalités clés :\n• Relevé des facings, prix, ruptures et emplacements concurrents\n• Photos des linéaires, avant/après intervention\n• Contrôle de la bonne mise en place des opérations commerciales\n• Suivi des objectifs merchandising (visibilité, planogrammes, implantations)\n• Synchronisation en temps réel avec votre back-office\n\n✅ Avantages pour les laboratoires et marques :\n• Visibilité terrain claire et fiable\n• Argumentaire renforcé auprès des officines partenaires\n• Reporting visuel pour vos équipes marketing\n• Meilleur respect des guidelines merchandising\n\nMaîtrisez votre présence en parapharmacie, appuyez vos actions par la preuve visuelle.",
+    icon: <CameraIcon className={styles.serviceIcon} />
   },
   {
-    title: "La formation de tous les utilisateurs",
-    description: "Programmes de formation complets pour assurer une adoption efficace des solutions.",
-    detailedInfo: "Nous proposons des programmes de formation complets et adaptés à tous les niveaux d'expertise. Nos sessions de formation sont conçues pour maximiser l'adoption des nouvelles technologies par vos équipes et garantir une utilisation optimale de vos outils numériques. Des supports de formation détaillés et un suivi personnalisé permettent à chaque utilisateur de maîtriser rapidement les nouvelles solutions.",
-    icon: <AcademicCapIcon className={styles.serviceIcon} />
+    title: "PMP Signature Électronique",
+    description: "Optimisez la gestion de vos documents officiels",
+    detailedInfo: "Optimisez la gestion de vos documents officiels (ordonnances, bons de commande, protocoles internes) grâce à un outil sécurisé et conforme aux normes eIDAS et RGPD.\n\n• Gain de temps : signature et validation en quelques clics, sans impression ni scan\n• Sécurité renforcée : horodatage, traçabilité complète, cryptographie à chaque étape\n• Conformité garantie : respect des normes légales pour les documents pharmaceutiques\n• Expérience fluide : interface intuitive pour pharmaciens, employés et prescripteurs\n• Archivage intelligent : conservation automatisée de l'historique, accessible à tout moment",
+    icon: <DocumentTextIcon className={styles.serviceIcon} />
   },
   {
-    title: "Une Hot-line et assistance technique",
-    description: "Support technique réactif et assistance continue pour garantir le bon fonctionnement de vos systèmes.",
-    detailedInfo: "Notre service d'assistance technique est disponible pour résoudre rapidement tout problème que vous pourriez rencontrer. Nous offrons un support réactif par téléphone, email ou via notre plateforme dédiée, avec des temps de réponse garantis selon vos besoins. Notre équipe technique expérimentée assure le bon fonctionnement de vos systèmes et minimise les interruptions potentielles de votre activité.",
-    icon: <PhoneIcon className={styles.serviceIcon} />
-  },
-  {
-    title: "L'hébergement de vos données en toute confidentialité",
-    description: "Solutions d'hébergement sécurisées garantissant la protection et la confidentialité de vos données.",
-    detailedInfo: "Nous proposons des solutions d'hébergement hautement sécurisées pour vos données sensibles. Nos infrastructures respectent les normes les plus strictes en matière de sécurité et de confidentialité, avec des protocoles de chiffrement avancés et des sauvegardes régulières. Nous garantissons la conformité avec les réglementations en vigueur (RGPD, etc.) et assurons la disponibilité permanente de vos services critiques.",
-    icon: <ShieldCheckIcon className={styles.serviceIcon} />
+    title: "PMP Data BI",
+    description: "Analyse Pharmaceutique & Décision",
+    detailedInfo: "Exploitez la puissance de vos données terrain, sell-in, sell-out et merchandising pour piloter votre activité pharmaceutique avec précision.\n\n• Tableaux de bord sur mesure : suivez en temps réel les performances par officine, secteur ou produit\n• Analyse des ventes : croisez données sell-in/sell-out pour affiner vos prévisions et vos actions commerciales\n• Pilotage des visites médicales & merchandising : visualisez les retours terrain, le respect des plans d'action et l'engagement des équipes\n• Suivi des campagnes marketing : mesurez l'impact réel en point de vente\n• Accès multi-supports & collaboratif : partagez vos rapports avec les équipes siège et terrain en un clic\n\nPrenez des décisions éclairées, gagnez en réactivité et alignez vos forces commerciales, marketing et logistiques autour de données fiables et activables.",
+    icon: <ChartBarIcon className={styles.serviceIcon} />
   }
 ];
 
@@ -51,6 +45,48 @@ interface ModalProps {
 function Modal({ isOpen, onClose, solution }: ModalProps) {
   if (!isOpen || !solution) return null;
 
+  const handleModalScroll = (e: React.WheelEvent) => {
+    e.stopPropagation();
+  };
+
+  const parseContent = (text: string) => {
+    const sections = text.split('\n\n');
+    const content = {
+      intro: '',
+      description: '',
+      features: [] as string[],
+      advantages: [] as string[],
+      conclusion: ''
+    };
+
+    sections.forEach(section => {
+      if (section.includes('✅')) {
+        const lines = section.split('\n');
+        const items = lines.slice(1).map(item => item.replace('•', '').trim()).filter(Boolean);
+        content.advantages = items;
+      } else if (section.includes('Fonctionnalités clés :')) {
+        const lines = section.split('\n');
+        const items = lines.slice(1).map(item => item.replace('•', '').trim()).filter(Boolean);
+        content.features = items;
+      } else if (section.includes('•')) {
+        const items = section.split('\n').map(item => item.replace('•', '').trim()).filter(Boolean);
+        content.features = items;
+      } else if (section.length > 100) {
+        if (!content.intro) {
+          content.intro = section;
+        } else if (!content.description) {
+          content.description = section;
+        } else {
+          content.conclusion = section;
+        }
+      }
+    });
+
+    return content;
+  };
+
+  const content = parseContent(solution.detailedInfo);
+
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <motion.div 
@@ -60,6 +96,7 @@ function Modal({ isOpen, onClose, solution }: ModalProps) {
         exit={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.3 }}
         onClick={(e) => e.stopPropagation()}
+        onWheel={handleModalScroll}
       >
         <div className={styles.modalHeader}>
           <button className={styles.closeButton} onClick={onClose}>
@@ -71,7 +108,50 @@ function Modal({ isOpen, onClose, solution }: ModalProps) {
             {solution.icon}
           </div>
           <h2 className={styles.modalTitle}>{solution.title}</h2>
-          <p className={styles.modalDescription}>{solution.detailedInfo}</p>
+          
+          <div className={styles.modalContent}>
+            {content.intro && (
+              <div className={styles.contentSection}>
+                <p className={styles.introText}>{content.intro}</p>
+              </div>
+            )}
+            
+            {content.description && (
+              <div className={styles.contentSection}>
+                <p className={styles.descriptionText}>{content.description}</p>
+              </div>
+            )}
+            
+            <div className={styles.contentGrid}>
+              {content.features.length > 0 && (
+                <div className={styles.featuresSection}>
+                  <h3>Fonctionnalités</h3>
+                  <ul>
+                    {content.features.map((feature, index) => (
+                      <li key={index}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              
+              {content.advantages.length > 0 && (
+                <div className={styles.advantagesSection}>
+                  <h3>Avantages</h3>
+                  <ul>
+                    {content.advantages.map((advantage, index) => (
+                      <li key={index}>{advantage}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            
+            {content.conclusion && (
+              <div className={styles.contentSection}>
+                <p className={styles.conclusionText}>{content.conclusion}</p>
+              </div>
+            )}
+          </div>
         </div>
       </motion.div>
     </div>
@@ -85,10 +165,12 @@ export default function SolutionsSection() {
   const openModal = (solution: typeof solutions[0]) => {
     setSelectedSolution(solution);
     setIsModalOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    document.body.style.overflow = 'unset';
   };
 
   return (
