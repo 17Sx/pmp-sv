@@ -5,9 +5,9 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
-        <div>
+        <div className={styles.footerSection}>
           <img
-            src="http://server.pmp.fr/pmp/icon/logo.png"
+            src="/img/logo.png"
             alt="PMP Logo"
             className={styles.footerLogo}
           />
@@ -15,7 +15,8 @@ export default function Footer() {
             Solutions informatiques professionnelles pour les entreprises.
           </p>
         </div>
-        <div>
+        
+        <div className={styles.footerSection}>
           <h3 className={styles.footerTitle}>Liens rapides</h3>
           <div className={styles.footerLinks}>
             <Link href="/#solutions" className={styles.footerLink}>
@@ -29,18 +30,20 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div>
+        
+        <div className={styles.footerSection}>
           <h3 className={styles.footerTitle}>Contact</h3>
           <div className={styles.footerContact}>
             <div className={styles.contactItem}>
               <span>01 45 30 90 20</span>
             </div>
             <div className={styles.contactItem}>
-              <span>contact@pmp-sa.net              </span>
+              <span>contact@pmp-sa.net</span>
             </div>
           </div>
         </div>
       </div>
+      
       <div className={styles.copyright}>
         © {new Date().getFullYear()} PMP. Tous droits réservés.
       </div>
